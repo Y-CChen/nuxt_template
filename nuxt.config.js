@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors';
+import i18n from './locales/i18n';
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -67,21 +68,7 @@ export default {
   },
 
   // Vuetify module configuration (https://i18n.nuxtjs.org/options-reference)
-  i18n: {
-    locales: ['en', 'es'],
-    defaultLocale: 'en',
-    vueI18n: {
-      fallbackLocale: 'en',
-      messages: {
-        en: {
-          greeting: 'Hello world!',
-        },
-        es: {
-          greeting: '¡Hola mundo!',
-        },
-      },
-    },
-  },
+  i18n,
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
