@@ -1,0 +1,19 @@
+function deploy() {
+    local LOCAL="./dist/"
+    local USERNAME=${1}
+    local DOMAIN="[domain]"
+    local REMOTE="${USERNAME}@${DOMAIN}:[directory path]"
+    local NO_BUILD=${2}
+    if [ "$NO_BUILD" != "--no-build" ]; then
+        npm run generate && rsync -rav --delete ${LOCAL} ${REMOTE}
+    else
+        rsync -rav --delete ${LOCAL} ${REMOTE}
+    fi
+}
+
+if [ "$1" == "" ] || [ $# -gt 2 ]; then
+    echo Usage: . deploy.sh [USERNAME]
+    echo --no-build: no npm run generate
+else
+    deploy ${1} ${2}
+fi
