@@ -7,12 +7,18 @@
       </div>
       <v-card>
         <v-card-title class="headline">
+          {{ $t('welcome') }}
+        </v-card-title>
+        <v-card-title class="headline">
           {{
-            `${$t('welcome')}, ${$moment
+            `Current Time ${$moment
               .utc()
               .local()
               .format('YYYY-MM-DD HH:mm:ss')}`
           }}
+        </v-card-title>
+        <v-card-title class="headline">
+          {{ `Backend URL ${$nuxt.context.env.backendUrl}` }}
         </v-card-title>
         <v-card-text>
           <p>

@@ -1,7 +1,29 @@
 import colors from 'vuetify/es5/util/colors';
 import i18n from './locales/i18n';
 
+const isDev = process.env.NODE_ENV === 'development';
+const baseUrl = isDev
+  ? process.env.DEVELOPMENT_PREFIX
+  : process.env.PRODUCTION_PREFIX;
+const proxy = {};
+if (isDev) {
+  proxy[process.env.DEVELOPMENT_BACKEND_URL] = {
+    target: `${process.env.DEVELOPMENT_BACKEND_PROXY_TARGET_URL}`,
+  };
+}
+
 export default {
+  env: {
+    baseUrl,
+    backendUrl: isDev
+      ? process.env.DEVELOPMENT_BACKEND_URL
+      : process.env.PRODUCTION_BACKEND_URL,
+  },
+
+  router: {
+    base: baseUrl,
+  },
+
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
@@ -17,7 +39,9 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: `${baseUrl}/favicon.ico` },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -35,6 +59,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    // https://github.com/nuxt-community/proxy-module
+    '@nuxtjs/proxy',
     // https://github.com/nuxt-community/moment-module
     '@nuxtjs/moment',
   ],
@@ -48,7 +74,11 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    proxy: isDev,
+  },
+
+  proxy,
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
