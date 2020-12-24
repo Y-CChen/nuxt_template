@@ -7,7 +7,12 @@
       </div>
       <v-card>
         <v-card-title class="headline">
-          {{ $t('welcome') }}
+          {{
+            `${$t('welcome')}, ${$moment
+              .utc()
+              .local()
+              .format('YYYY-MM-DD HH:mm:ss')}`
+          }}
         </v-card-title>
         <v-card-text>
           <p>
