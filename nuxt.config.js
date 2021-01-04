@@ -9,6 +9,7 @@ const proxy = {};
 if (isDev) {
   proxy[process.env.DEVELOPMENT_BACKEND_URL] = {
     target: `${process.env.DEVELOPMENT_BACKEND_PROXY_TARGET_URL}`,
+    pathRewrite: { [`^${process.env.DEVELOPMENT_BACKEND_URL}`]: '' },
   };
 }
 
