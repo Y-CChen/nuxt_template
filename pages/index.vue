@@ -86,6 +86,9 @@
           </a>
         </v-card-text>
         <v-card-actions>
+          <v-btn color="primary" nuxt @click="ecpay">
+            Ecpay
+          </v-btn>
           <v-spacer />
           <v-btn color="primary" nuxt to="/inspire">
             Continue
@@ -93,6 +96,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
+    <div ref="ecpay" class="d-none" />
   </v-row>
 </template>
 
@@ -104,6 +108,22 @@ export default {
   components: {
     Logo,
     VuetifyLogo,
+  },
+  methods: {
+    ecpay() {
+      this.$axios({
+        method: 'POST',
+        url: `${this.$nuxt.context.env.backendUrl}/ecpay/order/`,
+        data: {
+          total_amount: 2500,
+          item_names: ['good1', 'good2'],
+          client_back_url: `${this.$nuxt.context.env.host}${this.$nuxt.context.env.baseUrl}/inspire`,
+        },
+      }).then((response) => {
+        this.$refs.ecpay.innerHTML = response.data;
+        document.getElementById('data_set').submit();
+      });
+    },
   },
 };
 </script>

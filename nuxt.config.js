@@ -2,6 +2,9 @@ import colors from 'vuetify/es5/util/colors';
 import i18n from './locales/i18n';
 
 const isDev = process.env.NODE_ENV === 'development';
+const host = isDev
+  ? process.env.DEVELOPMENT_HOST
+  : process.env.PRODUCTION_HOST;
 const baseUrl = isDev
   ? process.env.DEVELOPMENT_PREFIX
   : process.env.PRODUCTION_PREFIX;
@@ -15,6 +18,7 @@ if (isDev) {
 
 export default {
   env: {
+    host,
     baseUrl,
     backendUrl: isDev
       ? process.env.DEVELOPMENT_BACKEND_URL
