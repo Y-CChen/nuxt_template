@@ -86,8 +86,11 @@
           </a>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" nuxt @click="ecpay">
-            Ecpay
+          <v-btn color="primary" nuxt @click="ecpay_payment">
+            Ecpay Payment
+          </v-btn>
+          <v-btn color="primary" nuxt @click="ecpay_logistic_cvs">
+            Ecpay Logistic CVS
           </v-btn>
           <v-spacer />
           <v-btn color="primary" nuxt to="/inspire">
@@ -96,7 +99,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <div ref="ecpay" class="d-none" />
+    <div ref="ecpay_payment" class="d-none" />
   </v-row>
 </template>
 
@@ -110,18 +113,39 @@ export default {
     VuetifyLogo,
   },
   methods: {
-    ecpay() {
+    ecpay_payment() {
       this.$axios({
         method: 'POST',
-        url: `${this.$nuxt.context.env.backendUrl}/ecpay/order/`,
+        url: `${this.$nuxt.context.env.backendUrl}/ecpay/payment/`,
         data: {
           total_amount: 2500,
           item_names: ['good1', 'good2'],
           client_back_url: `${this.$nuxt.context.env.host}${this.$nuxt.context.env.baseUrl}/inspire`,
         },
       }).then((response) => {
-        this.$refs.ecpay.innerHTML = response.data;
+        this.$refs.ecpay_payment.innerHTML = response.data;
         document.getElementById('data_set').submit();
+      });
+    },
+    ecpay_logistic_cvs() {
+      this.$axios({
+        method: 'POST',
+        url: `${this.$nuxt.context.env.backendUrl}/ecpay/logistic/cvs/`,
+        data: {
+          logistic_sub_type: 'FAMILY',
+          goods_amount: 10,
+          collection_amount: 10,
+          is_collection: 1,
+          goods_name: 'test',
+          receiver_name: '葉大雄',
+          receiver_phone: '',
+          receiver_cell_phone: '0911111111',
+          receiver_mail: 'test@gmail.com',
+          receiver_store_id: '006598',
+          return_store_id: '006598',
+        },
+      }).then((response) => {
+        this.$router.push('/inspire');
       });
     },
   },
