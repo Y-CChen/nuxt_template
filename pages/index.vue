@@ -86,20 +86,55 @@
           </a>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" nuxt @click="ecpay_payment">
-            Ecpay Payment
-          </v-btn>
-          <v-btn color="primary" nuxt @click="ecpay_logistic_cvs">
-            Ecpay Logistic CVS
-          </v-btn>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire">
-            Continue
-          </v-btn>
+          <v-container>
+            <v-row>
+              <v-col>
+                <v-btn color="primary" nuxt @click="ecpay_payment">
+                  Ecpay Payment
+                </v-btn>
+                <div ref="ecpay_payment" class="d-none" />
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-btn color="primary" nuxt @click="ecpay_logistic_cvs_map">
+                  Ecpay Logistic CVS Map
+                </v-btn>
+                <div ref="ecpay_logistic_cvs_map" class="d-none" />
+              </v-col>
+            </v-row>
+            <v-row v-if="is_cvs_store_selected">
+              <v-col>
+                <v-alert dense type="info">
+                  {{ $route.query.cvs_store_id }},
+                  {{ $route.query.cvs_store_name }},
+                  {{ $route.query.cvs_address }}
+                </v-alert>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-btn
+                  color="primary"
+                  nuxt
+                  :disabled="!is_cvs_store_selected"
+                  @click="ecpay_logistic_cvs"
+                >
+                  Ecpay Logistic CVS
+                </v-btn>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-btn color="primary" nuxt to="/inspire">
+                  Continue
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card-actions>
       </v-card>
     </v-col>
-    <div ref="ecpay_payment" class="d-none" />
   </v-row>
 </template>
 
@@ -111,6 +146,11 @@ export default {
   components: {
     Logo,
     VuetifyLogo,
+  },
+  computed: {
+    is_cvs_store_selected() {
+      return this.$route.query.cvs_store_id !== undefined;
+    },
   },
   methods: {
     ecpay_payment() {
@@ -141,11 +181,24 @@ export default {
           receiver_phone: '',
           receiver_cell_phone: '0911111111',
           receiver_mail: 'test@gmail.com',
-          receiver_store_id: '006598',
-          return_store_id: '006598',
+          receiver_store_id: this.$route.query.cvs_store_id,
+          return_store_id: this.$route.query.cvs_store_id,
         },
       }).then((response) => {
         this.$router.push('/inspire');
+      });
+    },
+    ecpay_logistic_cvs_map() {
+      this.$axios({
+        method: 'GET',
+        url: `${this.$nuxt.context.env.backendUrl}/ecpay/logistic/cvs/map`,
+        params: {
+          logistic_sub_type: 'FAMILY',
+          client_reply_url: `${this.$nuxt.context.env.host}${this.$nuxt.context.env.baseUrl}`,
+        },
+      }).then((response) => {
+        this.$refs.ecpay_logistic_cvs_map.innerHTML = response.data;
+        document.getElementById('data_set').submit();
       });
     },
   },
