@@ -1,24 +1,24 @@
 import colors from 'vuetify/es5/util/colors';
+import config from './.config.js';
 import i18n from './locales/i18n';
 
 const isDev = process.env.NODE_ENV === 'development';
-const baseUrl = isDev
-  ? process.env.DEVELOPMENT_PREFIX
-  : process.env.PRODUCTION_PREFIX;
+const baseUrl = isDev ? config.development.prefix : config.production.prefix;
+const backendUrl = isDev
+  ? config.development.backendUrl
+  : config.production.backendUrl;
 const proxy = {};
 if (isDev) {
-  proxy[process.env.DEVELOPMENT_BACKEND_URL] = {
-    target: `${process.env.DEVELOPMENT_BACKEND_PROXY_TARGET_URL}`,
-    pathRewrite: { [`^${process.env.DEVELOPMENT_BACKEND_URL}`]: '' },
+  proxy[config.development.backendUrl] = {
+    target: `${config.development.backendProxyTargetUrl}`,
+    pathRewrite: { [`^${config.development.backendUrl}`]: '' },
   };
 }
 
 export default {
   env: {
     baseUrl,
-    backendUrl: isDev
-      ? process.env.DEVELOPMENT_BACKEND_URL
-      : process.env.PRODUCTION_BACKEND_URL,
+    backendUrl,
   },
 
   router: {
