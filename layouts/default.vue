@@ -67,10 +67,22 @@
           </v-list-item-action>
           <v-list-item-title>Switch drawer (click me)</v-list-item-title>
         </v-list-item>
+        <v-list-item
+          v-for="locale in availableLocales"
+          :key="locale"
+          @click.native="$router.replace(switchLocalePath(locale))"
+        >
+          <v-list-item-action>
+            <v-icon light>
+              mdi-translate
+            </v-icon>
+          </v-list-item-action>
+          <v-list-item-title>{{ locale }}</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ $moment().format('YYYY') }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -86,12 +98,12 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/',
+          to: this.localePath('/'),
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
-          to: '/inspire',
+          to: this.localePath('/inspire'),
         },
       ],
       miniVariant: false,
@@ -100,10 +112,15 @@ export default {
       title: 'Vuetify.js',
     };
   },
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter(l => l !== this.$i18n.locale);
+    },
+  },
   methods: {
     logout() {
       this.$store.dispatch('auth/logout').then(() => {
-        this.$router.push('/login');
+        this.$router.push(this.localePath('/login'));
       });
     },
   },

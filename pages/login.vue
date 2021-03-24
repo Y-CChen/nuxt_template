@@ -106,7 +106,7 @@ export default {
       this.$store
         .dispatch('auth/login', this.formModel)
         .then(() => {
-          this.$router.push('/');
+          this.$router.push(this.localePath('/'));
           this.authenticating = false;
         })
         .catch(() => {

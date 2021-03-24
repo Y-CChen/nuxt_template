@@ -1,5 +1,6 @@
 const messages = {
   en: require('./en.json'),
+  'zh-TW': require('./zh-TW.json'),
 };
 
 const i18n = {
