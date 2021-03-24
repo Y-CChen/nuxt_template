@@ -7,7 +7,7 @@
       </div>
       <v-card>
         <v-card-title class="headline">
-          {{ $t('welcome') }}
+          Welcome to the Vuetify + Nuxt.js template
         </v-card-title>
         <v-card-title class="headline">
           {{
@@ -101,6 +101,7 @@ import Logo from '~/components/Logo.vue';
 import VuetifyLogo from '~/components/VuetifyLogo.vue';
 
 export default {
+  middleware: ['authenticated'],
   components: {
     Logo,
     VuetifyLogo,

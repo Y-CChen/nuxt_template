@@ -1,3 +1,12 @@
 {
-  "welcome": "Welcome to the Vuetify + Nuxt.js template"
+  "welcome": "Hi, {name}",
+  "login": "login",
+  "username": "username",
+  "password": "password",
+  "rule": {
+    "required": "{name} is required"
+  },
+  "register": "register",
+  "twitter": "twitter",
+  "google": "google"
 }

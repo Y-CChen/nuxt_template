@@ -37,6 +37,17 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-toolbar-title
+        v-if="$store.getters['auth/isAuthenticated']"
+        v-text="$t('welcome', { name: $store.getters['auth/username'] })"
+      />
+      <v-btn
+        v-if="$store.getters['auth/isAuthenticated']"
+        icon
+        @click.stop="logout"
+      >
+        <v-icon>mdi-logout</v-icon>
+      </v-btn>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
@@ -88,6 +99,13 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js',
     };
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout').then(() => {
+        this.$router.push('/login');
+      });
+    },
   },
 };
 </script>
