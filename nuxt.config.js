@@ -19,6 +19,7 @@ export default {
   env: {
     baseUrl,
     backendUrl,
+    liffId: config.liff.id,
   },
 
   router: {
