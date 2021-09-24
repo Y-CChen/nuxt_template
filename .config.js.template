@@ -1,0 +1,17 @@
+const config = {
+  // for development
+  development: {
+    host: 'http://localhost:3000',
+    prefix: '',
+    backendUrl: '/api',
+    backendProxyTargetUrl: 'http://localhost:8989/flask_template/api/v01',
+  },
+  // for production
+  production: {
+    host: 'https://dev.bclab.ai',
+    prefix: '/nuxt_template',
+    backendUrl: 'https://dev.bclab.ai/flask_template/api/v01',
+  },
+};
+
+export default config;

@@ -1,0 +1,12 @@
+{
+  "welcome": "嗨，{name}",
+  "login": "登入",
+  "username": "帳號",
+  "password": "密碼",
+  "rule": {
+    "required": "{name}必填"
+  },
+  "register": "註冊",
+  "twitter": "twitter",
+  "google": "google"
+}
