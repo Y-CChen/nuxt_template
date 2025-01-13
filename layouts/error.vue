@@ -6,14 +6,13 @@
     <h1 v-else>
       {{ otherError }}
     </h1>
-    <NuxtLink :to="localePath('/')">
-      Home page
-    </NuxtLink>
+    <NuxtLink to="/"> Home page </NuxtLink>
   </v-app>
 </template>
 
 <script>
 export default {
+  name: 'EmptyLayout',
   layout: 'empty',
   props: {
     error: {
@@ -25,16 +24,16 @@ export default {
     return {
       pageNotFound: '404 Not Found',
       otherError: 'An error occurred',
-    };
+    }
   },
   head() {
     const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
+      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {
       title,
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>
