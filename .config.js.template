@@ -1,0 +1,21 @@
+const apiGroups = {
+  prod: {
+    mainUrl: 'https://prod-main-url',
+  },
+  dev: {
+    mainUrl: 'https://dev-main-url',
+  },
+};
+
+// const apis = apiGroups.prod;
+const apis = apiGroups.dev;
+
+// local
+apis.mainUrl = 'http://localhost:3000/_fake_apis/main';
+
+const config = {
+  apis,
+  routerBase: '',
+};
+
+export default config;

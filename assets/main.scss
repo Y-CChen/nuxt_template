@@ -1,0 +1,47 @@
+// cursor
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// hide scrollbar
+
+// hide scrollbar for Chrome, Safari and Opera
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+// hide scrollbar for IE, Edge and Firefox
+.hide-scrollbar {
+  -ms-overflow-style: none; // IE and Edge
+  scrollbar-width: none; // Firefox
+}
+
+// position
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+// text truncate
+
+@mixin text-truncate-lines($lines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  white-space: normal;
+}
+
+.text-truncate-lines-1 {
+  @include text-truncate-lines(1);
+}
+
+.text-truncate-lines-2 {
+  @include text-truncate-lines(2);
+}
