@@ -6,7 +6,7 @@
         <VuetifyLogo />
       </v-card>
       <v-card>
-        <v-card-title class="headline">
+        <v-card-title class="text-h5">
           Welcome to the Vuetify + Nuxt.js template
         </v-card-title>
         <v-card-text>
@@ -51,7 +51,7 @@
             Thank you for developing with Vuetify and I look forward to bringing
             more exciting features in the future.
           </p>
-          <div class="text-xs-right">
+          <div class="text-right">
             <em><small>&mdash; John Leider</small></em>
           </div>
           <hr class="my-3" />
@@ -83,5 +83,5 @@
 <script>
 export default {
   name: 'IndexPage',
-}
+};
 </script>
