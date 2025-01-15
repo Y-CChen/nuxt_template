@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { makePublishPath } from '~/utils/make-path';
+import { makePublicPath } from '~/utils/make-path';
 
 export default function ({ app }) {
   const updateQueryActions = {
@@ -59,8 +59,8 @@ export default function ({ app }) {
 
   app.router.$routeStatus = routeStatus;
 
-  app.router.$makePublishPath = (path) => {
-    return makePublishPath(app.$config.routerBase, path);
+  app.router.$makePublicPath = (path) => {
+    return makePublicPath(app.$config.routerBase, path);
   };
 
   app.router.$makePatchQueryPath = (query) => {

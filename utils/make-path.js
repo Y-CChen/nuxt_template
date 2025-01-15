@@ -1,3 +1,3 @@
-export function makePublishPath(routerBase, path) {
+export function makePublicPath(routerBase, path) {
   return `${routerBase}${path}`;
 }

@@ -1,5 +1,5 @@
 import config from './.config.js';
-import { makePublishPath } from './utils/make-path.js';
+import { makePublicPath } from './utils/make-path.js';
 
 const isDev = process.env.NODE_ENV === 'development';
 const { apis, routerBase } = config;
@@ -55,8 +55,8 @@ export default {
     link: [
       {
         rel: 'icon',
-        type: 'image/x-icon',
-        href: makePublishPath(routerBase, '/favicon.ico'),
+        type: 'image/svg',
+        href: makePublicPath(routerBase, '/logo.svg'),
       },
     ],
   },
