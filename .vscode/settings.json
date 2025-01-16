@@ -1,0 +1,10 @@
+{
+  "i18n-ally.displayLanguage": "zh-TW",
+  "i18n-ally.keystyle": "flat",
+  "i18n-ally.localesPaths": "locales",
+  "i18n-ally.sourceLanguage": "zh-TW",
+  "path-intellisense.mappings": {
+    "~": "${workspaceFolder}",
+    "@": "${workspaceFolder}"
+  }
+}

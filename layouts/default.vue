@@ -37,6 +37,23 @@
       </v-btn>
       <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer />
+      <v-menu open-on-hover>
+        <template #activator="{ on, attrs }">
+          <v-btn text v-bind="attrs" v-on="on">
+            {{ $t('language') }}
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="{ code, name } in $i18n.$availableLocales(false)"
+            :key="code"
+            :value="code"
+            @click="$i18n.$switchLocale(code)"
+          >
+            <v-list-item-title>{{ name }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
@@ -86,6 +103,19 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js',
+    };
+  },
+  head() {
+    const i18nHead = this.$nuxtI18nHead({
+      addDirAttribute: true,
+      addSeoAttributes: true,
+    });
+    return {
+      htmlAttrs: {
+        ...i18nHead.htmlAttrs,
+      },
+      meta: [...i18nHead.meta],
+      link: [...i18nHead.link],
     };
   },
 };

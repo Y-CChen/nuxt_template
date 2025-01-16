@@ -1,3 +1,5 @@
+import locales from './locales/locales';
+
 const apiGroups = {
   prod: {
     mainUrl: 'https://prod-main-url',
@@ -15,6 +17,7 @@ apis.mainUrl = 'http://localhost:3000/_fake_apis/main';
 
 const config = {
   apis,
+  defaultLocale: locales.zhTw.code,
   routerBase: '',
 };
 

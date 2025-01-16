@@ -1,8 +1,9 @@
 import config from './.config.js';
+import locales from './locales/locales';
 import { makePublicPath } from './utils/make-path.js';
 
 const isDev = process.env.NODE_ENV === 'development';
-const { apis, routerBase } = config;
+const { apis, defaultLocale, routerBase } = config;
 
 export default {
   env: {
@@ -39,9 +40,7 @@ export default {
       const prefix = titleChunk ? `${titleChunk} - ` : '';
       return `${prefix}nuxt_template`;
     },
-    htmlAttrs: {
-      lang: 'en',
-    },
+    htmlAttrs: {},
     meta: [
       { charset: 'utf-8' },
       {
@@ -68,6 +67,7 @@ export default {
   plugins: [
     // DANGER: beware of order
     { src: '~/plugins/router.js' },
+    { src: '~/plugins/i18n.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -85,6 +85,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://i18n.nuxtjs.org
+    '@nuxtjs/i18n',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -93,10 +95,27 @@ export default {
     baseURL: '/',
   },
 
+  // Vuetify module configuration: https://i18n.nuxtjs.org/options-reference
+  i18n: {
+    defaultLocale,
+    detectBrowserLanguage: {
+      cookieSecure: true,
+    },
+    langDir: './locales',
+    lazy: true,
+    locales: Object.values(locales),
+    strategy: 'no_prefix',
+    vueI18n: {
+      fallbackLocale: defaultLocale,
+    },
+  },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    defaultAssets: {},
+    defaultAssets: {
+      icons: 'mdi',
+    },
     optionsPath: './vuetify.config.js',
     treeShake: true,
   },
