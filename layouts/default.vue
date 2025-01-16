@@ -37,7 +37,7 @@
       </v-btn>
       <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer />
-      <v-menu open-on-hover>
+      <v-menu open-on-hover offset-y>
         <template #activator="{ on, attrs }">
           <v-btn text v-bind="attrs" v-on="on">
             {{ $t('language') }}
@@ -74,7 +74,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>{{ copyright }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -117,6 +117,11 @@ export default {
       meta: [...i18nHead.meta],
       link: [...i18nHead.link],
     };
+  },
+  computed: {
+    copyright() {
+      return `© ${this.$i18n.$dayjs.format(Date.now(), 'YYYY')}`;
+    },
   },
 };
 </script>
