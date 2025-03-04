@@ -60,7 +60,7 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <Nuxt />
+        <nuxt />
       </v-container>
     </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
@@ -76,12 +76,20 @@
     <v-footer :absolute="!fixed" app>
       <span>{{ copyright }}</span>
     </v-footer>
+    <client-only>
+      <custom-confirm-dialog ref="confirmDialog" />
+    </client-only>
   </v-app>
 </template>
 
 <script>
+import CustomConfirmDialog from '~/components/custom-confirm-dialog.vue';
+
 export default {
   name: 'DefaultLayout',
+  components: {
+    CustomConfirmDialog,
+  },
   data() {
     return {
       clipped: false,
@@ -97,6 +105,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire',
+        },
+        {
+          icon: 'mdi-lock',
+          title: 'Secret',
+          to: '/secret',
         },
       ],
       miniVariant: false,
@@ -121,6 +134,20 @@ export default {
   computed: {
     copyright() {
       return `© ${this.$i18n.$dayjs.format(Date.now(), 'YYYY')}`;
+    },
+  },
+  watch: {
+    '$ui.confirmDialog.dialog': {
+      handler(dialog) {
+        if (!this.$refs.confirmDialog) {
+          return;
+        }
+        if (dialog?.visible) {
+          this.$refs.confirmDialog.showDialog(dialog);
+        } else {
+          this.$refs.confirmDialog.hideDialog();
+        }
+      },
     },
   },
 };

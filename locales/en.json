@@ -1,3 +1,14 @@
 {
-  "language": "language"
+  "cancel": "cancel",
+  "confirm": "confirm",
+  "fetch-user-info": "fetch user info",
+  "language": "language",
+  "length-must-max": "{something} cannot be longer than {length}",
+  "length-must-min": "{something} cannot be shorter than {length}",
+  "login": "login",
+  "login-failed": "login failed",
+  "logout": "logout",
+  "password": "password",
+  "please-enter-something": "please enter {something}",
+  "username": "username"
 }

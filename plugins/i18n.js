@@ -1,7 +1,6 @@
 import * as dayjs from 'dayjs';
 import 'dayjs/locale/zh-tw';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-// import { localeChanged } from 'vee-validate';
 import Vue from 'vue';
 
 dayjs.extend(localizedFormat);
@@ -36,7 +35,6 @@ export default function ({ app }) {
       vuetify.framework.lang.current = locale;
       dayjs.locale(locale);
       observableDayjs.localeChanged();
-      // localeChanged();
     });
   };
 

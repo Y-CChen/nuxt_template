@@ -1,0 +1,142 @@
+<template>
+  <v-btn
+    :style="{
+      pointerEvents: readonly ? 'none' : undefined,
+    }"
+    :block="block"
+    :color="color"
+    :depressed="depressed"
+    :disabled="disabled"
+    :elevation="elevation"
+    exact
+    :filled="filled"
+    :height="height"
+    :href="href"
+    :icon="icon"
+    :large="large"
+    :loading="loading"
+    :min-height="minHeight"
+    :min-width="minWidth"
+    :outlined="outlined"
+    :replace="replace"
+    :rounded="rounded"
+    :small="small"
+    :text="text"
+    :to="to"
+    :target="target"
+    :type="type"
+    :width="width"
+    :x-large="xLarge"
+    :x-small="xSmall"
+    @click="$emit('click', $event)"
+  >
+    <slot name="default" />
+  </v-btn>
+</template>
+
+<script>
+export default {
+  props: {
+    block: {
+      type: Boolean,
+      default: false,
+    },
+    color: {
+      type: String,
+      default: 'primary',
+    },
+    depressed: {
+      type: Boolean,
+      default: true,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    elevation: {
+      type: [Number, String],
+      default: undefined,
+    },
+    filled: {
+      type: Boolean,
+      default: true,
+    },
+    height: {
+      type: [Number, String],
+      default: undefined,
+    },
+    href: {
+      type: [Object, String],
+      default: undefined,
+    },
+    icon: {
+      type: Boolean,
+      default: false,
+    },
+    large: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    minHeight: {
+      type: [Number, String],
+      default: undefined,
+    },
+    minWidth: {
+      type: [Number, String],
+      default: undefined,
+    },
+    outlined: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
+    replace: {
+      type: Boolean,
+      default: false,
+    },
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
+    small: {
+      type: Boolean,
+      default: false,
+    },
+    text: {
+      type: Boolean,
+      default: false,
+    },
+    to: {
+      type: [Object, String],
+      default: undefined,
+    },
+    target: {
+      type: String,
+      default: undefined,
+    },
+    type: {
+      type: String,
+      default: 'button',
+    },
+    width: {
+      type: [Number, String],
+      default: undefined,
+    },
+    xLarge: {
+      type: Boolean,
+      default: false,
+    },
+    xSmall: {
+      type: Boolean,
+      default: false,
+    },
+  },
+};
+</script>

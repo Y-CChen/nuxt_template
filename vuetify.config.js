@@ -7,6 +7,9 @@ const { defaultLocale } = config;
 
 export default function (context) {
   return {
+    breakpoint: {
+      mobileBreakpoint: 'sm',
+    },
     lang: {
       current: defaultLocale,
       locales: {

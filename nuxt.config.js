@@ -1,9 +1,9 @@
-import config from './.config.js';
+import config from './.config';
 import locales from './locales/locales';
-import { makePublicPath } from './utils/make-path.js';
+import { makePublicPath } from './utils/make-path';
 
 const isDev = process.env.NODE_ENV === 'development';
-const { apis, defaultLocale, routerBase } = config;
+const { apis, auths, defaultLocale, fakeApisMiddleware, routerBase } = config;
 
 export default {
   env: {
@@ -19,12 +19,13 @@ export default {
 
   telemetry: false,
 
-  serverMiddleware: [],
+  serverMiddleware: [...fakeApisMiddleware],
 
   router: {
     base: routerBase,
     middleware: [
       // DANGER: beware of order
+      'auth',
     ],
   },
 
@@ -66,8 +67,12 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     // DANGER: beware of order
+    { src: '~/plugins/logger.server.js', mode: 'server' },
+    { src: '~/plugins/logger.client.js', mode: 'client' },
     { src: '~/plugins/router.js' },
     { src: '~/plugins/i18n.js' },
+    { src: '~/plugins/validate.js' },
+    { src: '~/plugins/ui.client.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -83,11 +88,53 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '~/modules/logger',
+    // https://auth.nuxtjs.org
+    '@nuxtjs/auth-next',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://i18n.nuxtjs.org
     '@nuxtjs/i18n',
   ],
+
+  // Auth module configuration: https://auth.nuxtjs.org/api/options
+  auth: {
+    cookie: {
+      options: {
+        secure: !isDev,
+      },
+    },
+    fullPathRedirect: true,
+    localStorage: false,
+    plugins: ['~/plugins/auth.js'],
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/',
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: `${apis.mainUrl}/auth/login`, method: 'POST' },
+          user: { url: `${apis.mainUrl}/auth/user`, method: 'POST' },
+          refresh: { url: `${apis.mainUrl}/auth/refresh`, method: 'POST' },
+          logout: false,
+        },
+        refreshToken: {
+          property: 'refreshToken',
+          data: 'refreshToken',
+          maxAge: auths.local.maxAgeRefreshToken,
+        },
+        scheme: '~/auth-schemes/local.js',
+        token: {
+          maxAge: auths.local.maxAgeAccessToken,
+          property: 'accessToken',
+        },
+        user: { autoFetch: true, property: 'user' },
+      },
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
