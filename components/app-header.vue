@@ -23,7 +23,9 @@
           :to="item.to"
         >
           <custom-list-item-icon>{{ item.icon }}</custom-list-item-icon>
-          <custom-list-item-title>{{ item.title }}</custom-list-item-title>
+          <custom-list-item-title class="text-capitalize">{{
+            item.title
+          }}</custom-list-item-title>
         </custom-list-item>
       </custom-list>
     </v-navigation-drawer>
@@ -40,7 +42,7 @@
           @click.stop="languageDrawerRight = !languageDrawerRight"
         >
           <custom-list-item-icon>mdi-repeat</custom-list-item-icon>
-          <custom-list-item-title>{{
+          <custom-list-item-title class="text-capitalize">{{
             languageDrawerRight ? $t('switch-to-left') : $t('switch-to-right')
           }}</custom-list-item-title>
         </custom-list-item>
