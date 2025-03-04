@@ -1,6 +1,10 @@
 <template>
-  <div class="d-flex align-center justify-center">
-    <custom-card class="flex-grow-1" max-width="400px">
+  <div class="d-flex justify-center">
+    <custom-card
+      class="flex-grow-1"
+      :flat="$vuetify.breakpoint.mobile"
+      max-width="400px"
+    >
       <custom-card-title>
         {{ $auth.user.username }}
       </custom-card-title>

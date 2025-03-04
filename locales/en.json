@@ -1,4 +1,5 @@
 {
+  "authentication-demo": "authentication demo",
   "back-to-homepage": "back to home",
   "cancel": "cancel",
   "confirm": "confirm",
@@ -12,5 +13,7 @@
   "logout": "logout",
   "password": "password",
   "please-enter-something": "please enter {something}",
+  "switch-to-left": "switch to left",
+  "switch-to-right": "switch to right",
   "username": "username"
 }

@@ -4,6 +4,14 @@
   cursor: pointer;
 }
 
+// fixed width
+
+@mixin fixed-width($width) {
+  width: $width;
+  min-width: $width;
+  max-width: $width;
+}
+
 // hide scrollbar
 
 // hide scrollbar for Chrome, Safari and Opera

@@ -1,12 +1,14 @@
 <template>
   <v-card
     :disabled="disabled"
+    :flat="flat"
     :height="height"
     :loading="loading"
     :max-height="maxHeight"
     :max-width="maxWidth"
     :min-height="minHeight"
     :min-width="minWidth"
+    :tile="tile"
     :width="width"
   >
     <slot name="default" />
@@ -17,6 +19,10 @@
 export default {
   props: {
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    flat: {
       type: Boolean,
       default: false,
     },
@@ -43,6 +49,10 @@ export default {
     minWidth: {
       type: [Number, String],
       default: undefined,
+    },
+    tile: {
+      type: Boolean,
+      default: false,
     },
     width: {
       type: [Number, String],

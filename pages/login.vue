@@ -1,7 +1,11 @@
 <template>
-  <div class="d-flex align-center justify-center">
+  <div class="d-flex justify-center">
     <custom-field-group v-slot="{ invalid, handleSubmit }">
-      <custom-card class="flex-grow-1" max-width="400px">
+      <custom-card
+        class="flex-grow-1"
+        :flat="$vuetify.breakpoint.mobile"
+        max-width="400px"
+      >
         <custom-form @submit="handleSubmit(onSubmit)">
           <custom-card-title>
             {{ $t('login') }}

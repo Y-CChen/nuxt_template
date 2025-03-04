@@ -1,4 +1,5 @@
 {
+  "authentication-demo": "身份認證演示",
   "back-to-homepage": "回到首頁",
   "cancel": "取消",
   "confirm": "確認",
@@ -12,5 +13,7 @@
   "logout": "登出",
   "password": "密碼",
   "please-enter-something": "請輸入{something}",
+  "switch-to-left": "切換到左邊",
+  "switch-to-right": "切換到右邊",
   "username": "使用者名稱"
 }
