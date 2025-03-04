@@ -1,7 +1,9 @@
 {
+  "back-to-homepage": "回到首頁",
   "cancel": "取消",
   "confirm": "確認",
   "fetch-user-info": "取得使用者資訊",
+  "homepage": "首頁",
   "language": "語言",
   "length-must-max": "{something}的長度不能多於{length}",
   "length-must-min": "{something}的長度不能少於{length}",

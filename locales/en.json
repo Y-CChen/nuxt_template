@@ -1,7 +1,9 @@
 {
+  "back-to-homepage": "back to home",
   "cancel": "cancel",
   "confirm": "confirm",
   "fetch-user-info": "fetch user info",
+  "homepage": "home",
   "language": "language",
   "length-must-max": "{something} cannot be longer than {length}",
   "length-must-min": "{something} cannot be shorter than {length}",
