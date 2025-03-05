@@ -67,11 +67,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '~/assets/main.scss';
 
 .default-layout-main {
-  .v-main__wrap {
+  :deep(.v-main__wrap) {
     display: flex;
     flex-direction: column;
   }
