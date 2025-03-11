@@ -9,46 +9,59 @@
     :label="label"
     :label-class="labelClass"
   >
-    <v-text-field
-      ref="textField"
+    <v-select
       :value="value"
-      :class="textFieldClass"
+      :class="selectClass"
       :background-color="backgroundColor"
-      :clearable="clearable"
+      :color="color"
       dense
       :disabled="disabled"
       :error-messages="errors"
       flat
       :hide-details="hideDetails && !errors?.length && !hint?.length"
-      :maxlength="maxLength"
+      :item-color="itemColor"
+      :item-text="itemText"
+      :item-value="itemValue"
+      :items="items"
+      :label="placeholder"
       :messages="hint"
+      :no-data-text="noDataText"
       :outlined="outlined"
-      persistent-placeholder
-      :placeholder="placeholder"
       :readonly="readonly"
-      :reverse="reverse"
-      :role="role"
+      :return-object="returnObject"
+      :rounded="rounded"
+      :single-line="singleLine"
       :solo="solo"
-      :type="type"
-      @change="$emit('change', $event)"
-      @click="$emit('click', $event)"
-      @click:clear="$emit('click:clear', $event)"
-      @focus="$emit('focus', $event)"
       @input="$emit('input', $event)"
-      @keydown="$emit('keydown', $event)"
     >
+      <template
+        v-if="haveSlot('selection')"
+        #selection="{
+          parent,
+          item,
+          index,
+          select,
+          selected,
+          disabled: selectionDisabled,
+        }"
+      >
+        <slot
+          name="selection"
+          v-bind="{
+            parent,
+            item,
+            index,
+            select,
+            selected,
+            disabled: selectionDisabled,
+          }"
+        />
+      </template>
+      <template v-if="haveSlot('item')" #item="{ parent, item, on, attrs }">
+        <slot name="item" v-bind="{ parent, item, on, attrs }" />
+      </template>
       <template v-if="haveSlot('prepend')" #prepend>
         <slot name="prepend" />
-      </template>
-      <template #append>
-        <slot name="append">
-          <custom-max-length-indicator
-            v-if="maxLength"
-            class="pt-1 pb-2"
-            :value="value"
-            :max-length="maxLength"
-          />
-        </slot>
       </template>
       <template v-if="haveSlot('append-outer')" #append-outer>
         <slot name="append-outer" />
@@ -56,22 +69,21 @@
       <template #message="{ message }">
         <custom-field-message :invalid="invalid" :message="message" />
       </template>
-    </v-text-field>
+    </v-select>
   </custom-field>
 </template>
 
 <script>
 import CustomFieldMessage from '~/components/custom-field-message.vue';
 import CustomField from '~/components/custom-field.vue';
-import CustomMaxLengthIndicator from '~/components/custom-max-length-indicator.vue';
 import { haveSlot } from '~/utils/have-slot';
 
 export default {
-  components: { CustomField, CustomFieldMessage, CustomMaxLengthIndicator },
+  components: { CustomField, CustomFieldMessage },
   props: {
     value: {
-      type: String,
-      required: true,
+      type: null,
+      default: null,
     },
     customMessages: {
       type: [Object],
@@ -101,7 +113,7 @@ export default {
       type: String,
       default: undefined,
     },
-    textFieldClass: {
+    selectClass: {
       type: [Object, String],
       default: undefined,
     },
@@ -109,9 +121,9 @@ export default {
       type: String,
       default: undefined,
     },
-    clearable: {
-      type: Boolean,
-      default: false,
+    color: {
+      type: String,
+      default: undefined,
     },
     disabled: {
       type: Boolean,
@@ -122,7 +134,27 @@ export default {
       default: false,
     },
     hint: {
-      type: [Array, String],
+      type: String,
+      default: undefined,
+    },
+    itemColor: {
+      type: String,
+      default: undefined,
+    },
+    itemText: {
+      type: String,
+      default: 'text',
+    },
+    itemValue: {
+      type: String,
+      default: 'value',
+    },
+    items: {
+      type: Array,
+      default: () => [],
+    },
+    noDataText: {
+      type: String,
       default: undefined,
     },
     outlined: {
@@ -137,32 +169,21 @@ export default {
       type: Boolean,
       default: false,
     },
-    reverse: {
+    returnObject: {
       type: Boolean,
       default: false,
     },
-    role: {
-      type: String,
-      default: undefined,
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
+    singleLine: {
+      type: Boolean,
+      default: false,
     },
     solo: {
       type: Boolean,
       default: false,
-    },
-    type: {
-      type: String,
-      default: 'text',
-    },
-  },
-  computed: {
-    input() {
-      return this.$refs.textField?.$el?.querySelector?.('input') ?? {};
-    },
-    maxLength() {
-      const maxLength = parseInt(
-        this.rules[this.$validate.Rules.maxTextLength],
-      );
-      return maxLength > 0 ? maxLength : undefined;
     },
   },
   methods: {

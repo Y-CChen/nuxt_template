@@ -1,7 +1,44 @@
+@import 'vuetify/src/styles/styles.sass';
+
 // cursor
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+// custom-editor
+
+@mixin heading($heading) {
+  font-size: map-get($headings, $heading, 'size') !important;
+  font-weight: map-get($headings, $heading, 'weight');
+  line-height: map-get($headings, $heading, 'line-height');
+  letter-spacing: map-get($headings, $heading, 'letter-spacing') !important;
+  font-family: map-get($headings, $heading, 'font-family') !important;
+  text-transform: map-get($headings, $heading, 'text-transform');
+}
+
+.custom-editor {
+  &:focus-visible {
+    outline: none;
+  }
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      @include heading('h#{$i}');
+    }
+  }
+}
+
+// fill height
+
+.fill-height {
+  height: 100%;
+}
+
+// fill width
+
+.fill-width {
+  width: 100%;
 }
 
 // fixed width
@@ -10,6 +47,18 @@
   width: $width;
   min-width: $width;
   max-width: $width;
+}
+
+// gap
+
+@mixin gap($gap) {
+  gap: $gap * 4px;
+}
+
+@for $i from 0 through 16 {
+  .gap-#{$i} {
+    @include gap($i);
+  }
 }
 
 // hide scrollbar
@@ -46,10 +95,8 @@
   white-space: normal;
 }
 
-.text-truncate-lines-1 {
-  @include text-truncate-lines(1);
-}
-
-.text-truncate-lines-2 {
-  @include text-truncate-lines(2);
+@for $i from 1 through 2 {
+  .text-truncate-lines-#{$i} {
+    @include text-truncate-lines($i);
+  }
 }

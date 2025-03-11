@@ -3,7 +3,10 @@
   "back-to-homepage": "back to home",
   "cancel": "cancel",
   "confirm": "confirm",
+  "editor-demo": "editor demo",
   "fetch-user-info": "fetch user info",
+  "heading-normal": "normal",
+  "heading-number": "heading {number}",
   "homepage": "home",
   "language": "language",
   "length-must-max": "{something} cannot be longer than {length}",
@@ -13,6 +16,7 @@
   "logout": "logout",
   "password": "password",
   "please-enter-something": "please enter {something}",
+  "preview": "preview",
   "switch-to-left": "switch to left",
   "switch-to-right": "switch to right",
   "username": "username"

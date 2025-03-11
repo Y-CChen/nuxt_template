@@ -8,6 +8,7 @@
     :max-width="maxWidth"
     :min-height="minHeight"
     :min-width="minWidth"
+    :outlined="outlined"
     :tile="tile"
     :width="width"
   >
@@ -49,6 +50,10 @@ export default {
     minWidth: {
       type: [Number, String],
       default: undefined,
+    },
+    outlined: {
+      type: Boolean,
+      default: false,
     },
     tile: {
       type: Boolean,

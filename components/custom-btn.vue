@@ -4,7 +4,7 @@
       pointerEvents: readonly ? 'none' : undefined,
     }"
     :block="block"
-    :color="color"
+    :color="computedColor"
     :depressed="depressed"
     :disabled="disabled"
     :elevation="elevation"
@@ -25,6 +25,7 @@
     :to="to"
     :target="target"
     :type="type"
+    :value="value"
     :width="width"
     :x-large="xLarge"
     :x-small="xSmall"
@@ -43,7 +44,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'primary',
+      default: undefined,
     },
     depressed: {
       type: Boolean,
@@ -125,6 +126,10 @@ export default {
       type: String,
       default: 'button',
     },
+    value: {
+      type: null,
+      default: undefined,
+    },
     width: {
       type: [Number, String],
       default: undefined,
@@ -136,6 +141,14 @@ export default {
     xSmall: {
       type: Boolean,
       default: false,
+    },
+  },
+  computed: {
+    computedColor() {
+      if (this.color || this.color === null || this.icon || this.text) {
+        return this.color;
+      }
+      return 'primary';
     },
   },
 };

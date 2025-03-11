@@ -36,7 +36,7 @@ import CustomCardTitle from '~/components/custom-card-title.vue';
 import CustomCard from '~/components/custom-card.vue';
 
 export default {
-  name: 'SecretPage',
+  name: 'AuthenticationDemoPage',
   components: {
     CustomBtn,
     CustomCard,

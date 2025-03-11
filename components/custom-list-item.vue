@@ -13,20 +13,16 @@
 export default {
   props: {
     inputValue: {
+      type: null,
       default: undefined,
-      validator: () => {
-        return true;
-      },
     },
     to: {
       type: [Object, String],
       default: undefined,
     },
     value: {
+      type: null,
       default: undefined,
-      validator: () => {
-        return true;
-      },
     },
   },
 };

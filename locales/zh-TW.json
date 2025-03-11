@@ -3,7 +3,10 @@
   "back-to-homepage": "回到首頁",
   "cancel": "取消",
   "confirm": "確認",
+  "editor-demo": "編輯器演示",
   "fetch-user-info": "取得使用者資訊",
+  "heading-normal": "內文",
+  "heading-number": "標題 {number}",
   "homepage": "首頁",
   "language": "語言",
   "length-must-max": "{something}的長度不能多於{length}",
@@ -13,6 +16,7 @@
   "logout": "登出",
   "password": "密碼",
   "please-enter-something": "請輸入{something}",
+  "preview": "預覽",
   "switch-to-left": "切換到左邊",
   "switch-to-right": "切換到右邊",
   "username": "使用者名稱"

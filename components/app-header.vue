@@ -98,6 +98,11 @@ export default {
           title: this.$t('authentication-demo'),
           to: '/authentication-demo',
         },
+        {
+          icon: 'mdi-note-edit',
+          title: this.$t('editor-demo'),
+          to: '/editor-demo',
+        },
       ];
     },
   },
