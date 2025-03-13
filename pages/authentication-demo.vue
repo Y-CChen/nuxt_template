@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-center">
+  <div class="fill-height d-flex align-center justify-center">
     <custom-card
       class="flex-grow-1"
       :flat="$vuetify.breakpoint.mobile"
