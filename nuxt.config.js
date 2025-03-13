@@ -117,7 +117,7 @@ export default {
       local: {
         endpoints: {
           login: { url: `${apis.mainUrl}/auth/login`, method: 'POST' },
-          user: { url: `${apis.mainUrl}/auth/user`, method: 'POST' },
+          user: { url: `${apis.mainUrl}/auth/user`, method: 'GET' },
           refresh: { url: `${apis.mainUrl}/auth/refresh`, method: 'POST' },
           logout: false,
         },

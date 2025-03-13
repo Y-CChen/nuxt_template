@@ -51,8 +51,9 @@ function makeTokens(id, username) {
 }
 
 export default async function (req, res, next) {
-  switch (req.url) {
-    case '/auth/login': {
+  const methodAndUrl = `${req.method.toUpperCase()} ${req.url}`;
+  switch (methodAndUrl) {
+    case 'POST /auth/login': {
       try {
         const body = await readBody(req);
         const { username, password } = JSON.parse(body);
@@ -70,7 +71,7 @@ export default async function (req, res, next) {
       res.end();
       break;
     }
-    case '/auth/user': {
+    case 'GET /auth/user': {
       try {
         const authorization = req.headers.authorization;
         const accessToken = authorization.split(' ')[1];
@@ -91,7 +92,7 @@ export default async function (req, res, next) {
       res.end();
       break;
     }
-    case '/auth/refresh': {
+    case 'POST /auth/refresh': {
       try {
         const body = await readBody(req);
         const { refreshToken } = JSON.parse(body);
