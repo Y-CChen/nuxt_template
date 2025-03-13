@@ -35,14 +35,13 @@
         <v-divider class="text--grey" />
       </div>
     </custom-floating>
-    <div
+    <editor-content
       :class="{
-        'overflow-y-auto': true,
+        'd-flex flex-column overflow-y-auto': true,
         'ma-2': !readonly,
       }"
-    >
-      <editor-content :editor="editor" />
-    </div>
+      :editor="editor"
+    />
   </custom-card>
 </template>
 
@@ -206,6 +205,13 @@ export default {
         this.toolbarResetting = true;
         this.$nextTick(() => {
           this.toolbarResetting = false;
+        });
+      },
+    },
+    readonly: {
+      handler(value) {
+        this.editor?.setOptions({
+          editable: !value,
         });
       },
     },
