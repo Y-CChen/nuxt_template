@@ -11,20 +11,9 @@
 </template>
 
 <script>
-import CustomBtn from '~/components/custom-btn.vue';
-import CustomCard from '~/components/custom-card.vue';
-import CustomEditor from '~/components/custom-editor.vue';
-import customFloating from '~/components/custom-floating.vue';
-
 export default {
   name: 'EditorDemoPage',
   auth: false,
-  components: {
-    CustomBtn,
-    CustomCard,
-    CustomEditor,
-    customFloating,
-  },
   data() {
     return {
       preview: false,

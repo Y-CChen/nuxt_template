@@ -24,10 +24,7 @@
 </template>
 
 <script>
-import CustomCard from '~/components/custom-card.vue';
-
 export default {
-  components: { CustomCard },
   props: {
     src: {
       type: String,

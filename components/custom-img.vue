@@ -10,14 +10,16 @@
     <template #placeholder>
       <custom-img-placeholder :src="placeholderSrc" :size="placeholderSize" />
     </template>
+    <template v-if="haveSlot('default')" #default>
+      <slot name="default" />
+    </template>
   </v-img>
 </template>
 
 <script>
-import CustomImgPlaceholder from '~/components/custom-img-placeholder.vue';
+import { haveSlot } from '~/utils/have-slot';
 
 export default {
-  components: { CustomImgPlaceholder },
   props: {
     src: {
       type: String,
@@ -50,6 +52,11 @@ export default {
     placeholderSize: {
       type: [Number, String],
       default: undefined,
+    },
+  },
+  methods: {
+    haveSlot(name) {
+      return haveSlot(this, name);
     },
   },
 };

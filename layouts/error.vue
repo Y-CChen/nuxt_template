@@ -8,11 +8,8 @@
 </template>
 
 <script>
-import CustomBtn from '~/components/custom-btn.vue';
-
 export default {
   name: 'EmptyLayout',
-  components: { CustomBtn },
   props: {
     error: {
       type: Object,

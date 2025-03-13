@@ -13,7 +13,7 @@ export default function ({ app }, inject) {
       if (error?.isAxiosError) {
         return;
       }
-      loggerErrorFunc(...args);
+      loggerErrorFunc?.(...args);
     };
     process.$logger.error = logError;
   }

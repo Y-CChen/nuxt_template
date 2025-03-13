@@ -56,10 +56,6 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { Strike } from '@tiptap/extension-strike';
 import { Text } from '@tiptap/extension-text';
 import { Editor, EditorContent } from '@tiptap/vue-2';
-import CustomBtn from './custom-btn.vue';
-import CustomCard from './custom-card.vue';
-import CustomFloating from './custom-floating.vue';
-import CustomSelect from './custom-select.vue';
 
 const TextFormats = {
   bold: 'bold',
@@ -79,10 +75,6 @@ const Headings = {
 
 export default {
   components: {
-    CustomBtn,
-    CustomCard,
-    CustomFloating,
-    CustomSelect,
     EditorContent,
   },
   props: {

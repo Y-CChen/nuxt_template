@@ -30,9 +30,6 @@
 </template>
 
 <script>
-import CustomBtn from './custom-btn.vue';
-import CustomDialog from '~/components/custom-dialog.vue';
-
 const makeDialog = ({
   visible,
   title,
@@ -61,10 +58,6 @@ const makeDialog = ({
 };
 
 export default {
-  components: {
-    CustomBtn,
-    CustomDialog,
-  },
   data() {
     return {
       dialog: makeDialog({ visible: false }),

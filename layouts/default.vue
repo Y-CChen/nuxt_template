@@ -9,7 +9,7 @@
       >
         <div
           :class="{
-            'py-5 mx-auto': true,
+            'fill-height py-5 mx-auto': true,
             'fixed-width-1024px px-5': !$vuetify.breakpoint.mobile,
           }"
         >
@@ -26,17 +26,8 @@
 </template>
 
 <script>
-import AppHeader from '~/components/app-header.vue';
-import AppFooter from '~/components/app-footer.vue';
-import CustomConfirmDialog from '~/components/custom-confirm-dialog.vue';
-
 export default {
   name: 'DefaultLayout',
-  components: {
-    AppHeader,
-    AppFooter,
-    CustomConfirmDialog,
-  },
   head() {
     const i18nHead = this.$nuxtI18nHead({
       addDirAttribute: true,

@@ -5,7 +5,7 @@ export default function (_ignore, inject) {
     if (error?.isAxiosError) {
       args[0] = error.toJSON?.() || error;
     }
-    loggerErrorFunc(...args);
+    loggerErrorFunc?.(...args);
   };
   process.$logger.error = logError;
   inject('logger', process.$logger);

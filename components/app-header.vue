@@ -61,20 +61,7 @@
 </template>
 
 <script>
-import CustomBtn from '~/components/custom-btn.vue';
-import CustomList from '~/components/custom-list.vue';
-import CustomListItem from '~/components/custom-list-item.vue';
-import CustomListItemIcon from '~/components/custom-list-item-icon.vue';
-import CustomListItemTitle from '~/components/custom-list-item-title.vue';
-
 export default {
-  components: {
-    CustomBtn,
-    CustomList,
-    CustomListItem,
-    CustomListItemIcon,
-    CustomListItemTitle,
-  },
   data() {
     return {
       mainDrawer: !this.$vuetify.breakpoint.mobile,

@@ -61,13 +61,9 @@
 </template>
 
 <script>
-import CustomFieldMessage from '~/components/custom-field-message.vue';
-import CustomField from '~/components/custom-field.vue';
-import CustomMaxLengthIndicator from '~/components/custom-max-length-indicator.vue';
 import { haveSlot } from '~/utils/have-slot';
 
 export default {
-  components: { CustomField, CustomFieldMessage, CustomMaxLengthIndicator },
   props: {
     value: {
       type: String,
@@ -160,7 +156,7 @@ export default {
     },
     maxLength() {
       const maxLength = parseInt(
-        this.rules[this.$validate.Rules.maxTextLength],
+        this.rules?.[this.$validate.Rules.maxTextLength],
       );
       return maxLength > 0 ? maxLength : undefined;
     },

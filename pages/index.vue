@@ -12,16 +12,9 @@
 </template>
 
 <script>
-import CustomCard from '~/components/custom-card.vue';
-import CustomImg from '~/components/custom-img.vue';
-
 export default {
   name: 'IndexPage',
   auth: false,
-  components: {
-    CustomCard,
-    CustomImg,
-  },
 };
 </script>
 

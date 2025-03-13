@@ -74,12 +74,9 @@
 </template>
 
 <script>
-import CustomFieldMessage from '~/components/custom-field-message.vue';
-import CustomField from '~/components/custom-field.vue';
 import { haveSlot } from '~/utils/have-slot';
 
 export default {
-  components: { CustomField, CustomFieldMessage },
   props: {
     value: {
       type: null,

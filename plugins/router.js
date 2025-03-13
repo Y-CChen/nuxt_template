@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { Layouts } from '~/utils/constant';
 import { makePublicPath } from '~/utils/make-path';
 
 export default function ({ app }) {
@@ -8,16 +9,24 @@ export default function ({ app }) {
   };
 
   const routeStatus = Vue.observable({
+    layout: Layouts.default,
     canGoBack: false,
+
+    setLayout(layout) {
+      this.layout = layout;
+    },
 
     setCanGoBack(canGoBack) {
       this.canGoBack = !!canGoBack;
     },
   });
 
-  const updateRouteStatus = (routeBaseName) => {
+  const updateRouteStatus = (pathSegments) => {
+    updateLayout(pathSegments);
     updateCanGoBack();
   };
+
+  const updateLayout = (pathSegments) => {};
 
   const updateCanGoBack = () => {
     if (process.server) {
@@ -88,6 +97,10 @@ export default function ({ app }) {
   };
 
   app.router.afterEach((to, from) => {
-    updateRouteStatus();
+    const path = to.path || '';
+    const pathSegments = path.startsWith('/')
+      ? path.substring(1).split('/')
+      : path.split('/');
+    updateRouteStatus(pathSegments);
   });
 }

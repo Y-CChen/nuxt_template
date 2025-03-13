@@ -50,28 +50,9 @@
 </template>
 
 <script>
-import CustomBtn from '~/components/custom-btn.vue';
-import CustomCardActions from '~/components/custom-card-actions.vue';
-import CustomCardText from '~/components/custom-card-text.vue';
-import CustomCardTitle from '~/components/custom-card-title.vue';
-import CustomCard from '~/components/custom-card.vue';
-import CustomFieldGroup from '~/components/custom-field-group.vue';
-import CustomForm from '~/components/custom-form.vue';
-import CustomTextField from '~/components/custom-text-field.vue';
-
 export default {
   name: 'LoginPage',
   auth: 'guest',
-  components: {
-    CustomBtn,
-    CustomCard,
-    CustomCardActions,
-    CustomCardText,
-    CustomCardTitle,
-    CustomFieldGroup,
-    CustomForm,
-    CustomTextField,
-  },
   data() {
     return {
       form: {

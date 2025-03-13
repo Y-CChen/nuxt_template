@@ -30,19 +30,8 @@
 </template>
 
 <script>
-import CustomBtn from '~/components/custom-btn.vue';
-import CustomCardActions from '~/components/custom-card-actions.vue';
-import CustomCardTitle from '~/components/custom-card-title.vue';
-import CustomCard from '~/components/custom-card.vue';
-
 export default {
   name: 'AuthenticationDemoPage',
-  components: {
-    CustomBtn,
-    CustomCard,
-    CustomCardActions,
-    CustomCardTitle,
-  },
   data() {
     return {
       doingLogout: false,

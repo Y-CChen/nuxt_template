@@ -33,23 +33,9 @@
 </template>
 
 <script>
-import CustomBtn from '~/components/custom-btn.vue';
-import CustomCard from '~/components/custom-card.vue';
-import CustomCardActions from '~/components/custom-card-actions.vue';
-import CustomCardTitle from '~/components/custom-card-title.vue';
-import CustomCardText from '~/components/custom-card-text.vue';
-import CustomFieldGroup from '~/components/custom-field-group.vue';
 import { haveSlot } from '~/utils/have-slot';
 
 export default {
-  components: {
-    CustomBtn,
-    CustomCard,
-    CustomCardActions,
-    CustomCardTitle,
-    CustomCardText,
-    CustomFieldGroup,
-  },
   props: {
     value: {
       default: undefined,
