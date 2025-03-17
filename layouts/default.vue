@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main class="default-layout-main">
+    <v-main v-scroll="onScroll" class="default-layout-main">
       <div
         :class="{
           'flex-grow-1': true,
@@ -20,6 +20,7 @@
     </v-main>
     <client-only>
       <app-header />
+      <app-floating-action-buttons />
       <custom-confirm-dialog ref="confirmDialog" />
     </client-only>
   </v-app>
@@ -53,6 +54,14 @@ export default {
           this.$refs.confirmDialog.hideDialog();
         }
       },
+    },
+  },
+  mounted() {
+    this.onScroll();
+  },
+  methods: {
+    onScroll() {
+      this.$ui.windowScroll.set();
     },
   },
 };

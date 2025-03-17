@@ -8,7 +8,8 @@
     :depressed="depressed"
     :disabled="disabled"
     :elevation="elevation"
-    exact
+    :exact="exact"
+    :fab="fab"
     :filled="filled"
     :height="height"
     :href="href"
@@ -57,6 +58,14 @@ export default {
     elevation: {
       type: [Number, String],
       default: undefined,
+    },
+    exact: {
+      type: Boolean,
+      default: true,
+    },
+    fab: {
+      type: Boolean,
+      default: false,
     },
     filled: {
       type: Boolean,
