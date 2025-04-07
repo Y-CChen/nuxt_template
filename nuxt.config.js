@@ -39,7 +39,7 @@ export default {
   head: {
     titleTemplate(titleChunk) {
       const prefix = titleChunk ? `${titleChunk} - ` : '';
-      return `${prefix}nuxt_template`;
+      return `${prefix}${this.$t('nuxt-template')}`;
     },
     htmlAttrs: {},
     meta: [

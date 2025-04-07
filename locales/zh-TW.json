@@ -15,6 +15,7 @@
   "login": "登入",
   "login-failed": "登入失敗",
   "logout": "登出",
+  "nuxt-template": "nuxt 範本",
   "password": "密碼",
   "please-enter-something": "請輸入{something}",
   "preview": "預覽",
