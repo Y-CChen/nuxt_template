@@ -109,7 +109,7 @@ export default {
     plugins: ['~/plugins/auth.js'],
     redirect: {
       login: '/login',
-      logout: '/',
+      logout: false,
       callback: '/login',
       home: '/',
     },
