@@ -146,7 +146,7 @@ export default {
   i18n: {
     defaultLocale,
     detectBrowserLanguage: {
-      cookieSecure: true,
+      cookieSecure: !isDev,
     },
     langDir: './locales',
     lazy: true,
