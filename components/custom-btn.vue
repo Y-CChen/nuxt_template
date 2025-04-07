@@ -31,6 +31,8 @@
     :x-large="xLarge"
     :x-small="xSmall"
     @click="$emit('click', $event)"
+    @mouseenter="$emit('mouseenter', $event)"
+    @mouseleave="$emit('mouseleave', $event)"
   >
     <slot name="default" />
   </v-btn>
