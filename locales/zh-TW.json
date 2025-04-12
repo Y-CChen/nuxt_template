@@ -18,7 +18,9 @@
   "nuxt-template": "nuxt 範本",
   "password": "密碼",
   "please-enter-something": "請輸入{something}",
+  "please-enter-valid-email": "請輸入有效的電子信箱",
   "preview": "預覽",
+  "something-not-match-target": "{something}與{target}不相符",
   "switch-to-left": "切換到左邊",
   "switch-to-right": "切換到右邊",
   "username": "使用者名稱"
