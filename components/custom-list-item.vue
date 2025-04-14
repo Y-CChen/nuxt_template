@@ -3,6 +3,7 @@
     :input-value="inputValue"
     :dense="dense"
     :exact="exact"
+    :tag="tag"
     :to="to"
     :value="value"
     @click="$emit('click', $event)"
@@ -26,6 +27,10 @@ export default {
     exact: {
       type: Boolean,
       default: true,
+    },
+    tag: {
+      type: String,
+      default: undefined,
     },
     to: {
       type: [Object, String],
