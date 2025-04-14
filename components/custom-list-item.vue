@@ -1,9 +1,12 @@
 <template>
   <v-list-item
     :input-value="inputValue"
+    :dense="dense"
+    :exact="exact"
     :to="to"
     :value="value"
     @click="$emit('click', $event)"
+    @input="$emit('input', $event)"
   >
     <slot name="default" />
   </v-list-item>
@@ -15,6 +18,14 @@ export default {
     inputValue: {
       type: null,
       default: undefined,
+    },
+    dense: {
+      type: Boolean,
+      default: false,
+    },
+    exact: {
+      type: Boolean,
+      default: true,
     },
     to: {
       type: [Object, String],
