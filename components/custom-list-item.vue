@@ -8,6 +8,8 @@
     :value="value"
     @click="$emit('click', $event)"
     @input="$emit('input', $event)"
+    @mouseenter="$emit('mouseenter', $event)"
+    @mouseleave="$emit('mouseleave', $event)"
   >
     <slot name="default" />
   </v-list-item>
