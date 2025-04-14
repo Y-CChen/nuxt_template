@@ -1,5 +1,9 @@
 <template>
-  <v-menu :open-on-hover="openOnHover" :offset-y="offsetY">
+  <v-menu
+    :open-on-hover="openOnHover"
+    :offset-y="offsetY"
+    @input="$emit('input', $event)"
+  >
     <template v-if="haveSlot('activator')" #activator="{ attrs, on }">
       <slot name="activator" v-bind="{ attrs, on }" />
     </template>
