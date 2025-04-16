@@ -22,6 +22,9 @@
         </div>
       </slot>
     </template>
+    <template v-if="haveSlot('top')" #top>
+      <slot name="top" />
+    </template>
     <template
       v-for="headerTemplateName in headers
         .map((header) => `header.${header.value}`)
