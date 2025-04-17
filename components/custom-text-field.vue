@@ -13,6 +13,7 @@
       ref="textField"
       :value="value"
       :class="textFieldClass"
+      :autocomplete="type"
       :background-color="backgroundColor"
       :clearable="clearable"
       dense
