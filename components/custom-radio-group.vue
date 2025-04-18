@@ -1,5 +1,6 @@
 <template>
   <custom-field
+    v-slot="{ errors, invalid }"
     :custom-messages="customMessages"
     :immediate="immediate"
     :name="name"
