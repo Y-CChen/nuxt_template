@@ -71,17 +71,6 @@ export default {
         this.$emit('input', value);
       },
     },
-    // payMethodItems() {
-    //   return Object.values(payMethodTypes)
-    //     .filter((payMethodType) =>
-    //       this.availablePayMethods.includes(payMethodType),
-    //     )
-    //     .map((payMethodType) => ({
-    //       value: payMethodType,
-    //       label: this.$backendHelpers.translatePayMethod(payMethodType),
-    //       disabled: !this.availablePayMethods.includes(payMethodType),
-    //     }));
-    // },
   },
 };
 </script>
