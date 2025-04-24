@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import { Layouts } from '~/utils/constant';
 import { makePublicPath } from '~/utils/make-path';
+import { timeout } from '~/utils/timeout';
 
 export default function ({ app }) {
   const updateQueryActions = {
@@ -94,6 +95,18 @@ export default function ({ app }) {
     }
     const url = app.router.match(path).fullPath;
     window.open(url, target);
+  };
+
+  app.router.$backOrPush = async (path) => {
+    if (routeStatus.canGoBack) {
+      const state = window.history.state.key;
+      app.router.back();
+      await timeout(100);
+      if (state !== window.history.state.key) {
+        return;
+      }
+    }
+    app.router.push(path);
   };
 
   app.router.afterEach((to, from) => {
