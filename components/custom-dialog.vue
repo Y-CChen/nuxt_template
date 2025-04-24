@@ -54,7 +54,7 @@ export default {
     },
     maxWidth: {
       type: [Number, String],
-      default: undefined,
+      default: '1024px',
     },
     persistent: {
       type: Boolean,
