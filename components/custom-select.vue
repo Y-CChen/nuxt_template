@@ -60,6 +60,9 @@
       <template v-if="haveSlot('item')" #item="{ parent, item, on, attrs }">
         <slot name="item" v-bind="{ parent, item, on, attrs }" />
       </template>
+      <template v-if="haveSlot('append-item')" #append-item>
+        <slot name="append-item" />
+      </template>
       <template v-if="haveSlot('prepend')" #prepend>
         <slot name="prepend" />
       </template>
