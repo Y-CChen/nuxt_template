@@ -74,9 +74,10 @@
 </template>
 
 <script>
-import { haveSlot } from '~/utils/have-slot';
+import { mixinHaveSlot } from '~/mixins/have-slot';
 
 export default {
+  mixins: [mixinHaveSlot],
   props: {
     value: {
       type: null,
@@ -181,11 +182,6 @@ export default {
     solo: {
       type: Boolean,
       default: false,
-    },
-  },
-  methods: {
-    haveSlot(name) {
-      return haveSlot(this, name);
     },
   },
 };

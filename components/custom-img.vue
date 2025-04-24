@@ -17,9 +17,10 @@
 </template>
 
 <script>
-import { haveSlot } from '~/utils/have-slot';
+import { mixinHaveSlot } from '~/mixins/have-slot';
 
 export default {
+  mixins: [mixinHaveSlot],
   props: {
     src: {
       type: String,
@@ -52,11 +53,6 @@ export default {
     placeholderSize: {
       type: [Number, String],
       default: undefined,
-    },
-  },
-  methods: {
-    haveSlot(name) {
-      return haveSlot(this, name);
     },
   },
 };

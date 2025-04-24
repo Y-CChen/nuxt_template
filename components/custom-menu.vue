@@ -12,9 +12,10 @@
 </template>
 
 <script>
-import { haveSlot } from '~/utils/have-slot';
+import { mixinHaveSlot } from '~/mixins/have-slot';
 
 export default {
+  mixins: [mixinHaveSlot],
   props: {
     openOnHover: {
       type: Boolean,
@@ -23,11 +24,6 @@ export default {
     offsetY: {
       type: Boolean,
       default: true,
-    },
-  },
-  methods: {
-    haveSlot(name) {
-      return haveSlot(this, name);
     },
   },
 };

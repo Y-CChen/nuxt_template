@@ -33,9 +33,10 @@
 </template>
 
 <script>
-import { haveSlot } from '~/utils/have-slot';
+import { mixinHaveSlot } from '~/mixins/have-slot';
 
 export default {
+  mixins: [mixinHaveSlot],
   props: {
     value: {
       default: undefined,
@@ -76,11 +77,6 @@ export default {
       set(value) {
         this.$emit('input', value);
       },
-    },
-  },
-  methods: {
-    haveSlot(name) {
-      return haveSlot(this, name);
     },
   },
 };

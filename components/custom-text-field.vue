@@ -62,9 +62,10 @@
 </template>
 
 <script>
-import { haveSlot } from '~/utils/have-slot';
+import { mixinHaveSlot } from '~/mixins/have-slot';
 
 export default {
+  mixins: [mixinHaveSlot],
   props: {
     value: {
       type: String,
@@ -160,11 +161,6 @@ export default {
         this.rules?.[this.$validate.Rules.maxTextLength],
       );
       return maxLength > 0 ? maxLength : undefined;
-    },
-  },
-  methods: {
-    haveSlot(name) {
-      return haveSlot(this, name);
     },
   },
 };
