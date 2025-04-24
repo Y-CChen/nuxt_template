@@ -11,6 +11,7 @@
     :outlined="outlined"
     :tile="tile"
     :width="width"
+    v-on="on"
   >
     <slot name="default" />
   </v-card>
@@ -62,6 +63,17 @@ export default {
     width: {
       type: [Number, String],
       default: undefined,
+    },
+  },
+  computed: {
+    on() {
+      const on = {};
+      if (this.$listeners.click) {
+        on.click = (e) => {
+          this.$emit('click', e);
+        };
+      }
+      return on;
     },
   },
 };
