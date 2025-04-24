@@ -29,6 +29,18 @@
   }
 }
 
+// custom pagination
+
+.custom-pagination {
+  .v-pagination__item {
+    box-shadow: none;
+  }
+
+  .v-pagination__navigation {
+    box-shadow: none;
+  }
+}
+
 // fill height
 
 .fill-height {

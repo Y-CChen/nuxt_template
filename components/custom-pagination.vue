@@ -2,6 +2,7 @@
   <client-only>
     <div>
       <v-pagination
+        class="custom-pagination"
         :value="computedValue"
         :circle="circle"
         :length="computedPagesLength"
