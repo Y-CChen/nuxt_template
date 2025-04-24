@@ -31,11 +31,11 @@
       :role="role"
       :solo="readonly || solo"
       :type="type"
-      @change="$emit('change', $event)"
+      @change="$emit('change', $event || '')"
       @click="$emit('click', $event)"
       @click:clear="$emit('click:clear', $event)"
       @focus="$emit('focus', $event)"
-      @input="$emit('input', $event)"
+      @input="$emit('input', $event || '')"
       @keydown="$emit('keydown', $event)"
     >
       <template v-if="haveSlot('prepend')" #prepend>
