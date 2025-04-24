@@ -15,6 +15,7 @@
   "login": "login",
   "login-failed": "login failed",
   "logout": "logout",
+  "no-data": "no data",
   "nuxt-template": "nuxt template",
   "password": "password",
   "please-enter-something": "please enter {something}",
