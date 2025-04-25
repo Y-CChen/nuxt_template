@@ -3,6 +3,7 @@
     :input-value="inputValue"
     :dense="dense"
     :exact="exact"
+    :exact-path="exactPath"
     :tag="tag"
     :to="to"
     :value="value"
@@ -27,6 +28,10 @@ export default {
       default: false,
     },
     exact: {
+      type: Boolean,
+      default: false,
+    },
+    exactPath: {
       type: Boolean,
       default: true,
     },

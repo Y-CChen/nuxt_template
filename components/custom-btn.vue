@@ -9,6 +9,7 @@
     :disabled="disabled"
     :elevation="elevation"
     :exact="exact"
+    :exact-path="exactPath"
     :fab="fab"
     :filled="filled"
     :height="height"
@@ -62,6 +63,10 @@ export default {
       default: undefined,
     },
     exact: {
+      type: Boolean,
+      default: false,
+    },
+    exactPath: {
       type: Boolean,
       default: true,
     },
