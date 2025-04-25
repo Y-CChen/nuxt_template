@@ -41,6 +41,9 @@
       <template v-if="haveSlot('prepend')" #prepend>
         <slot name="prepend" />
       </template>
+      <template v-if="haveSlot('prepend-inner')" #prepend-inner>
+        <slot name="prepend-inner" />
+      </template>
       <template #append>
         <slot name="append">
           <custom-max-length-indicator
