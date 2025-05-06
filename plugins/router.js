@@ -1,14 +1,19 @@
+import * as AsyncLock from 'async-lock';
 import Vue from 'vue';
 import { Layouts } from '~/utils/constant';
 import { makePublicPath } from '~/utils/make-path';
 import { timeout } from '~/utils/timeout';
 
-export default function ({ app }) {
-  const updateQueryActions = {
-    patch: 'patch',
-    put: 'put',
-  };
+const asyncLock = new AsyncLock();
+const asyncLockKeys = {
+  updateQuery: 'update-query',
+};
+const updateQueryActions = {
+  patch: 'patch',
+  put: 'put',
+};
 
+export default function ({ app }) {
   const routeStatus = Vue.observable({
     layout: Layouts.default,
     canGoBack: false,
@@ -54,17 +59,19 @@ export default function ({ app }) {
   };
 
   const updateQuery = async (query, action, replace) => {
-    const route = app.context.route;
-    const fullPath = makeUpdateQueryPath(query, action);
-    if (fullPath !== route.fullPath) {
-      return await new Promise((resolve, reject) => {
-        if (replace) {
-          app.router.replace(fullPath, resolve, reject);
-        } else {
-          app.router.push(fullPath, resolve, reject);
-        }
-      });
-    }
+    return await asyncLock.acquire(asyncLockKeys.updateQuery, async () => {
+      const route = app.context.route;
+      const fullPath = makeUpdateQueryPath(query, action);
+      if (fullPath !== route.fullPath) {
+        return await new Promise((resolve, reject) => {
+          if (replace) {
+            app.router.replace(fullPath, resolve, reject);
+          } else {
+            app.router.push(fullPath, resolve, reject);
+          }
+        });
+      }
+    });
   };
 
   app.router.$routeStatus = routeStatus;
