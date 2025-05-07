@@ -18,11 +18,14 @@
   "no-data": "no data",
   "nuxt-template": "nuxt template",
   "password": "password",
+  "please-enter-integer": "please enter an integer",
   "please-enter-something": "please enter {something}",
   "please-enter-valid-email": "please enter a valid email",
   "preview": "preview",
   "something-not-match-target": "{something} does not match {target}",
   "switch-to-left": "switch to left",
   "switch-to-right": "switch to right",
-  "username": "username"
+  "username": "username",
+  "value-must-max": "{something} cannot be greater than {max}",
+  "value-must-min": "{something} cannot be less than {min}"
 }

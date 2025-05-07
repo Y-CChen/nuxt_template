@@ -1,13 +1,25 @@
 import { extend, setInteractionMode } from 'vee-validate';
-import { confirmed, email, max, min, required } from 'vee-validate/dist/rules';
+import {
+  confirmed,
+  email,
+  integer,
+  max,
+  max_value as maxValue,
+  min,
+  min_value as minValue,
+  required,
+} from 'vee-validate/dist/rules';
 
 setInteractionMode('aggressive', () => ({ on: ['input'], debounce: 200 }));
 
 const Rules = {
   confirmed: 'confirmed',
   email: 'email',
+  integer: 'integer',
   maxTextLength: 'max_text_length',
+  maxValue: 'max_value',
   minTextLength: 'min_text_length',
+  minValue: 'min_value',
   required: 'required',
 };
 
@@ -29,6 +41,13 @@ export default function ({ app }, inject) {
     },
   });
 
+  extend(Rules.integer, {
+    ...integer,
+    message: (fieldName, params) => {
+      return app.i18n.t('please-enter-integer');
+    },
+  });
+
   extend(Rules.maxTextLength, {
     ...max,
     message: (fieldName, params) => {
@@ -39,12 +58,32 @@ export default function ({ app }, inject) {
     },
   });
 
+  extend(Rules.maxValue, {
+    ...maxValue,
+    message: (fieldName, params) => {
+      return app.i18n.t('value-must-max', {
+        something: params._field_,
+        max: params.max,
+      });
+    },
+  });
+
   extend(Rules.minTextLength, {
     ...min,
     message: (fieldName, params) => {
       return app.i18n.t('length-must-min', {
         something: params._field_,
         length: params.length,
+      });
+    },
+  });
+
+  extend(Rules.minValue, {
+    ...minValue,
+    message: (fieldName, params) => {
+      return app.i18n.t('value-must-min', {
+        something: params._field_,
+        min: params.min,
       });
     },
   });
