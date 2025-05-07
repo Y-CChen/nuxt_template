@@ -1,10 +1,9 @@
 <template>
   <div
     :class="{
-      'v-messages': true,
+      'v-messages v-messages__message': true,
       'red--text': invalid,
       'grey--text': !invalid,
-      'pl-2': padding,
     }"
   >
     {{ message }}
@@ -21,10 +20,6 @@ export default {
     message: {
       type: String,
       default: '',
-    },
-    padding: {
-      type: Boolean,
-      default: false,
     },
   },
 };

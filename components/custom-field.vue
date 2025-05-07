@@ -8,6 +8,7 @@
     :name="name"
     :rules="rules"
     :vid="vid"
+    :detect-input="detectInput"
   >
     <div v-if="validated" ref="validated" />
     <slot name="label">
@@ -25,6 +26,10 @@ export default {
     ValidationProvider,
   },
   props: {
+    value: {
+      type: undefined,
+      default: null,
+    },
     tag: {
       type: String,
       default: 'span',
@@ -49,6 +54,10 @@ export default {
       type: [Object],
       default: undefined,
     },
+    detectInput: {
+      type: Boolean,
+      default: true,
+    },
     label: {
       type: String,
       default: undefined,
@@ -59,11 +68,32 @@ export default {
     },
   },
   watch: {
+    value() {
+      if (!this.detectInput) {
+        this.validate();
+      }
+    },
     name() {
       this.$nextTick(() => {
         if (this.$refs.validated) {
           this.$refs.provider.reset();
+          this.validate();
+        }
+      });
+    },
+  },
+  mounted() {
+    if (this.immediate && !this.detectInput) {
+      this.validate();
+    }
+  },
+  methods: {
+    validate() {
+      this.$nextTick(() => {
+        if (this.detectInput) {
           this.$refs.provider.validate();
+        } else {
+          this.$refs.provider.validate(this.value);
         }
       });
     },

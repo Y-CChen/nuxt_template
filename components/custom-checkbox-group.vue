@@ -1,10 +1,13 @@
 <template>
   <custom-field
+    v-slot="{ errors, invalid }"
+    :value="computedValue"
     :custom-messages="customMessages"
     :immediate="immediate"
     :name="name"
     :rules="rules"
     :vid="vid"
+    :detect-input="false"
     :label="label"
     :label-class="labelClass"
   >
@@ -13,12 +16,19 @@
         v-for="(item, itemIndex) in items"
         :key="itemIndex"
         v-model="computedValue"
-        class="mr-4 mt-1"
+        class="mr-4 mt-0 pt-0"
         :disabled="item.disabled"
+        hide-details
         :label="item.label"
         :value="item.value"
       />
     </div>
+    <custom-field-message
+      v-if="!hideDetails || errors?.length"
+      class="mb-2 px-3"
+      :invalid="invalid"
+      :message="errors[0]"
+    />
   </custom-field>
 </template>
 
@@ -56,6 +66,10 @@ export default {
     labelClass: {
       type: String,
       default: undefined,
+    },
+    hideDetails: {
+      type: Boolean,
+      default: false,
     },
     items: {
       type: [Array],
