@@ -24,10 +24,10 @@
       />
     </div>
     <custom-field-message
-      v-if="!hideDetails || errors?.length"
+      v-if="!hideDetails || errors?.length || hint?.length"
       class="mb-2 px-3"
       :invalid="invalid"
-      :message="errors[0]"
+      :message="errors?.[0] || (Array.isArray(hint) ? hint?.[0] : hint)"
     />
   </custom-field>
 </template>
@@ -65,6 +65,10 @@ export default {
     },
     labelClass: {
       type: String,
+      default: undefined,
+    },
+    hint: {
+      type: [Array, String],
       default: undefined,
     },
     hideDetails: {

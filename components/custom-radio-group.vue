@@ -11,6 +11,7 @@
   >
     <v-radio-group
       v-model="computedValue"
+      class="ma-0 pa-0"
       :class="radioGroupClass"
       :error-messages="errors"
       :hide-details="hideDetails && !errors?.length && !hint?.length"
