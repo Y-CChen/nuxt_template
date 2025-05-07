@@ -11,7 +11,13 @@
     :label="label"
     :label-class="labelClass"
   >
-    <div class="d-flex">
+    <div
+      class="d-flex"
+      :class="{
+        'flex-wrap': row,
+        'flex-column': !row,
+      }"
+    >
       <v-checkbox
         v-for="(item, itemIndex) in items"
         :key="itemIndex"
@@ -78,6 +84,10 @@ export default {
     items: {
       type: [Array],
       default: () => [],
+    },
+    row: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
