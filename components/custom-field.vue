@@ -69,9 +69,11 @@ export default {
   },
   watch: {
     value() {
-      if (!this.detectInput) {
-        this.validate();
-      }
+      this.$nextTick(() => {
+        if (!this.detectInput) {
+          this.validate();
+        }
+      });
     },
     name() {
       this.$nextTick(() => {
@@ -81,21 +83,31 @@ export default {
         }
       });
     },
-  },
-  mounted() {
-    if (this.immediate && !this.detectInput) {
-      this.validate();
-    }
-  },
-  methods: {
-    validate() {
+    detectInput() {
       this.$nextTick(() => {
-        if (this.detectInput) {
-          this.$refs.provider.validate();
-        } else {
-          this.$refs.provider.validate(this.value);
+        if (!this.detectInput) {
+          this.validate();
         }
       });
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      if (!this.detectInput) {
+        this.validate(true);
+      }
+    });
+  },
+  methods: {
+    validate(silent = false) {
+      if (!this.detectInput) {
+        this.$refs.provider.syncValue(this.value);
+      }
+      if (silent) {
+        this.$refs.provider.validateSilent();
+      } else {
+        this.$refs.provider.validate();
+      }
     },
   },
 };
