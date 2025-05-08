@@ -11,7 +11,7 @@
       :disabled="!floatingToolbar"
     >
       <div class="d-flex flex-column">
-        <v-divider v-if="active" class="text--grey" />
+        <custom-divider v-if="active" />
         <custom-card class="pa-2 d-flex flex-wrap align-center gap-2" flat tile>
           <v-btn-toggle :value="textFormat" color="primary" dense multiple>
             <custom-btn
@@ -32,7 +32,7 @@
             </template>
           </custom-select>
         </custom-card>
-        <v-divider class="text--grey" />
+        <custom-divider />
       </div>
     </custom-floating>
     <editor-content
