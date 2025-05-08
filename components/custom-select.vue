@@ -32,6 +32,7 @@
       :rounded="rounded"
       :single-line="singleLine"
       :solo="solo"
+      @change="$emit('change', $event)"
       @input="$emit('input', $event)"
     >
       <template
