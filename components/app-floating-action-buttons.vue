@@ -1,13 +1,15 @@
 <template>
-  <client-only>
-    <div v-show="$ui.windowScroll.y > 0">
-      <div class="app-floating-action-buttons">
-        <custom-btn color="primary" fab @click="$vuetify.goTo(0)">
-          <v-icon>mdi-chevron-up</v-icon>
-        </custom-btn>
+  <custom-slim-container client-only>
+    <template #content>
+      <div v-show="$ui.windowScroll.y > 0">
+        <div class="app-floating-action-buttons">
+          <custom-btn color="primary" fab @click="$vuetify.goTo(0)">
+            <v-icon>mdi-chevron-up</v-icon>
+          </custom-btn>
+        </div>
       </div>
-    </div>
-  </client-only>
+    </template>
+  </custom-slim-container>
 </template>
 
 <script>

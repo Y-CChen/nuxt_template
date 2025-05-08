@@ -18,11 +18,17 @@
       </div>
       <app-footer />
     </v-main>
-    <client-only>
-      <app-header />
-      <app-floating-action-buttons />
-      <custom-confirm-dialog ref="confirmDialog" />
-    </client-only>
+    <custom-slim-container client-only>
+      <template #content>
+        <app-header />
+      </template>
+    </custom-slim-container>
+    <app-floating-action-buttons />
+    <custom-slim-container client-only>
+      <template #content>
+        <custom-confirm-dialog ref="confirmDialog" />
+      </template>
+    </custom-slim-container>
   </v-app>
 </template>
 

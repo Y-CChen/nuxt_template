@@ -1,6 +1,6 @@
 <template>
-  <client-only>
-    <div>
+  <custom-slim-container tag="div" client-only>
+    <template #content>
       <v-pagination
         class="custom-pagination"
         :value="computedValue"
@@ -30,8 +30,8 @@
           />
         </template>
       </i18n>
-    </div>
-  </client-only>
+    </template>
+  </custom-slim-container>
 </template>
 
 <script>
