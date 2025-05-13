@@ -91,9 +91,6 @@ export default {
     },
   },
   computed: {
-    MimeTypes() {
-      return MimeTypes;
-    },
     input() {
       return this.$refs.fileInput?.$refs?.input ?? {};
     },
