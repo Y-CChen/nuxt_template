@@ -11,13 +11,12 @@
   >
     <v-file-input
       ref="fileInput"
-      :value="value"
+      v-model="computedValue"
       :accept="accept?.join?.(',')"
       :dense="dense"
       :error-messages="errors"
       :messages="hint"
       :outlined="outlined"
-      @input="$emit('input', $event)"
     >
       <template #message="{ message }">
         <custom-field-message :invalid="invalid" :message="message" />
@@ -91,6 +90,14 @@ export default {
     },
   },
   computed: {
+    computedValue: {
+      get() {
+        return this.value;
+      },
+      set(value) {
+        this.$emit('input', value);
+      },
+    },
     input() {
       return this.$refs.fileInput?.$refs?.input ?? {};
     },
