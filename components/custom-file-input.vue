@@ -12,7 +12,7 @@
     <v-file-input
       ref="fileInput"
       :value="value"
-      :accept="accept"
+      :accept="accept?.join?.(',')"
       :dense="dense"
       :error-messages="errors"
       :messages="hint"
@@ -28,6 +28,8 @@
 
 <script>
 import { MimeTypes } from '~/utils/constant';
+
+const MimeTypesSet = new Set(Object.values(MimeTypes));
 
 export default {
   props: {
@@ -64,13 +66,13 @@ export default {
       default: undefined,
     },
     accept: {
-      type: String,
+      type: Array,
       default: undefined,
       validator: (value) => {
         return (
           value === undefined ||
-          value.split(',').every((mimeType) => {
-            return Object.values(MimeTypes).includes(mimeType);
+          value.every?.((mimeType) => {
+            return MimeTypesSet.has(mimeType);
           })
         );
       },
@@ -89,6 +91,9 @@ export default {
     },
   },
   computed: {
+    MimeTypes() {
+      return MimeTypes;
+    },
     input() {
       return this.$refs.fileInput?.$refs?.input ?? {};
     },
