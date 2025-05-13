@@ -157,7 +157,7 @@ export default {
   },
   computed: {
     input() {
-      return this.$refs.textField?.$el?.querySelector?.('input') ?? {};
+      return this.$refs.textField?.$refs?.input ?? {};
     },
     maxLength() {
       const maxLength = parseInt(
