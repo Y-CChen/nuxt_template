@@ -7,19 +7,22 @@
   >
     <custom-field-group v-slot="{ invalid, handleSubmit }">
       <custom-card :disabled="loading" :loading="loading">
-        <custom-card-title class="flex-nowrap align-start">
-          <span>
-            {{ title }}
-          </span>
-          <span class="mx-auto" />
-          <custom-btn
-            v-if="!hideCloseBtn"
-            icon
-            small
-            @click="$emit('click:close', $event)"
-          >
-            <v-icon>mdi-close</v-icon>
-          </custom-btn>
+        <custom-card-title class="flex-column align-stretch">
+          <div class="d-flex flex-nowrap align-start">
+            <span>
+              {{ title }}
+            </span>
+            <span class="mx-auto" />
+            <custom-btn
+              v-if="!hideCloseBtn"
+              icon
+              small
+              @click="$emit('click:close', $event)"
+            >
+              <v-icon>mdi-close</v-icon>
+            </custom-btn>
+          </div>
+          <slot name="title-extension" />
         </custom-card-title>
         <custom-card-text v-if="haveSlot('text')">
           <slot name="text" />

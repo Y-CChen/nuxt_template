@@ -5,6 +5,8 @@
     :disable-filtering="disableFiltering"
     :disable-pagination="disablePagination"
     :disable-sort="disableSort"
+    :fixed-header="fixedHeader"
+    :height="height"
     :hide-default-footer="hideDefaultFooter"
     :loading="loading"
   >
@@ -72,6 +74,14 @@ export default {
     disableSort: {
       type: Boolean,
       default: true,
+    },
+    fixedHeader: {
+      type: Boolean,
+      default: false,
+    },
+    height: {
+      type: [Number, String],
+      default: undefined,
     },
     hideDefaultFooter: {
       type: Boolean,
