@@ -31,6 +31,17 @@ export default {
         this.$emit('downloading', false);
       }
     },
+    downloadLink({ url, mimeType, filename } = {}) {
+      try {
+        this.$emit('downloading', true);
+        const link = this.$refs.link;
+        link.href = url;
+        link.download = makeFilename(mimeType, filename);
+        link.click();
+      } finally {
+        this.$emit('downloading', false);
+      }
+    },
   },
 };
 </script>
