@@ -93,7 +93,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      if (!this.detectInput) {
+      if (!this.detectInput && this.$refs.provider) {
         this.validate(true);
       }
     });
