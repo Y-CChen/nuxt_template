@@ -3,6 +3,7 @@
     v-model="computedValue"
     :items="items"
     :headers="headers"
+    :checkbox-color="checkboxColor"
     :disable-filtering="disableFiltering"
     :disable-pagination="disablePagination"
     :disable-sort="disableSort"
@@ -33,7 +34,7 @@
     <template #header.data-table-select="{ props, on }">
       <v-checkbox
         class="ma-0 pa-0"
-        color="grey darken-1"
+        :color="props.color"
         hide-details
         :input-value="props.value"
         :indeterminate="props.indeterminate"
@@ -85,6 +86,10 @@ export default {
     headers: {
       type: Array,
       default: () => [],
+    },
+    checkboxColor: {
+      type: String,
+      default: 'primary',
     },
     disableFiltering: {
       type: Boolean,
