@@ -1,5 +1,6 @@
 <template>
   <v-data-table
+    v-model="computedValue"
     :items="items"
     :headers="headers"
     :disable-filtering="disableFiltering"
@@ -8,7 +9,9 @@
     :fixed-header="fixedHeader"
     :height="height"
     :hide-default-footer="hideDefaultFooter"
+    :item-key="itemKey"
     :loading="loading"
+    :show-select="showSelect"
   >
     <template #loading>
       <slot name="loading">
@@ -26,6 +29,22 @@
     </template>
     <template v-if="haveSlot('top')" #top>
       <slot name="top" />
+    </template>
+    <template #header.data-table-select="{ props, on }">
+      <v-checkbox
+        class="ma-0 pa-0"
+        color="grey darken-1"
+        hide-details
+        :input-value="props.value"
+        :indeterminate="props.indeterminate"
+        @change="on.input"
+      >
+        <template v-if="selectAllLabel" #label>
+          <span class="text-caption font-weight-bold text-no-wrap">{{
+            selectAllLabel
+          }}</span>
+        </template>
+      </v-checkbox>
     </template>
     <template
       v-for="headerTemplateName in headers
@@ -55,6 +74,10 @@ import { mixinHaveSlot } from '~/mixins/have-slot';
 export default {
   mixins: [mixinHaveSlot],
   props: {
+    value: {
+      type: Array,
+      default: () => [],
+    },
     items: {
       type: Array,
       default: () => [],
@@ -91,9 +114,31 @@ export default {
       type: Boolean,
       default: undefined,
     },
+    itemKey: {
+      type: String,
+      default: undefined,
+    },
     loading: {
       type: Boolean,
       default: false,
+    },
+    selectAllLabel: {
+      type: String,
+      default: undefined,
+    },
+    showSelect: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    computedValue: {
+      get() {
+        return this.value;
+      },
+      set(value) {
+        this.$emit('input', value);
+      },
     },
   },
 };
