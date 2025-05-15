@@ -7,8 +7,10 @@ import {
   max_value as maxValue,
   min,
   min_value as minValue,
+  regex,
   required,
 } from 'vee-validate/dist/rules';
+import { isValidMobileNumber, isValidPhoneNumber } from '~/utils/phone-number';
 
 setInteractionMode('aggressive', () => ({ on: ['input'], debounce: 200 }));
 
@@ -20,6 +22,9 @@ const Rules = {
   maxValue: 'max_value',
   minTextLength: 'min_text_length',
   minValue: 'min_value',
+  mobileNumber: 'mobile_number',
+  phoneNumber: 'phone_number',
+  regex: 'regex',
   required: 'required',
 };
 
@@ -84,6 +89,33 @@ export default function ({ app }, inject) {
       return app.i18n.t('value-must-min', {
         something: params._field_,
         min: params.min,
+      });
+    },
+  });
+
+  extend(Rules.mobileNumber, {
+    validate(value) {
+      return isValidMobileNumber(value);
+    },
+    message: (fieldName, params) => {
+      return app.i18n.t('please-enter-valid-mobile');
+    },
+  });
+
+  extend(Rules.phoneNumber, {
+    validate(value) {
+      return isValidPhoneNumber(value);
+    },
+    message: (fieldName, params) => {
+      return app.i18n.t('please-enter-valid-phone');
+    },
+  });
+
+  extend(Rules.regex, {
+    ...regex,
+    message: (fieldName, params) => {
+      return app.i18n.t('please-enter-valid-something', {
+        something: params._field_,
       });
     },
   });

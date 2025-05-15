@@ -28,6 +28,7 @@
     "async-lock": "^1.4.1",
     "core-js": "^3.25.3",
     "dayjs": "^1.11.13",
+    "libphonenumber-js": "^1.12.8",
     "nuxt": "^2.15.8",
     "vee-validate": "3",
     "vue": "^2.7.10",
