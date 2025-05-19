@@ -25,8 +25,8 @@
         class="mr-4 mt-0 pt-0"
         :disabled="item.disabled"
         hide-details
-        :label="item.label"
-        :value="item.value"
+        :label="item[itemLabel]"
+        :value="item[itemValue]"
       />
     </div>
     <custom-field-message
@@ -84,6 +84,14 @@ export default {
     items: {
       type: [Array],
       default: () => [],
+    },
+    itemLabel: {
+      type: String,
+      default: 'label',
+    },
+    itemValue: {
+      type: String,
+      default: 'value',
     },
     row: {
       type: Boolean,
