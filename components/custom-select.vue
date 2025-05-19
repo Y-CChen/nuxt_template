@@ -13,6 +13,7 @@
       :value="value"
       :class="selectClass"
       :background-color="backgroundColor"
+      :clearable="clearable"
       :color="color"
       dense
       :disabled="disabled"
@@ -122,6 +123,10 @@ export default {
     backgroundColor: {
       type: String,
       default: undefined,
+    },
+    clearable: {
+      type: Boolean,
+      default: false,
     },
     color: {
       type: String,
