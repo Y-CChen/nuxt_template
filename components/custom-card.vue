@@ -1,5 +1,6 @@
 <template>
   <v-card
+    :color="color"
     :disabled="disabled"
     :flat="flat"
     :height="height"
@@ -20,6 +21,10 @@
 <script>
 export default {
   props: {
+    color: {
+      type: String,
+      default: undefined,
+    },
     disabled: {
       type: Boolean,
       default: false,
