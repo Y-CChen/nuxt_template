@@ -10,9 +10,11 @@
     :fixed-header="fixedHeader"
     :height="height"
     :hide-default-footer="hideDefaultFooter"
+    :item-class="itemClass"
     :item-key="itemKey"
     :loading="loading"
     :show-select="showSelect"
+    @click:row="$emit('click:row', ...arguments)"
   >
     <template #loading>
       <slot name="loading">
@@ -117,6 +119,10 @@ export default {
     },
     hideHeader: {
       type: Boolean,
+      default: undefined,
+    },
+    itemClass: {
+      type: [Function, String],
       default: undefined,
     },
     itemKey: {
