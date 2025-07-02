@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     computedValue() {
-      return Math.min(Math.max(this.value, 1), this.computedPagesLength);
+      return Math.min(Math.max(this.value, 0), this.computedPagesLength) || 1;
     },
     computedItemsPerPageOptions() {
       return [...this.itemsPerPageOptions].sort((a, b) => {
@@ -72,13 +72,13 @@ export default {
       });
     },
     computedPagesLength() {
-      return Math.ceil(this.itemsLength / this.itemsPerPage) || 1;
+      return Math.max(Math.ceil(this.itemsLength / this.itemsPerPage), 0) || 1;
     },
   },
   watch: {
     computedValue: {
       handler(v) {
-        if (v !== this.value) {
+        if (this.itemsLength > 0 && this.itemsPerPage > 0 && v !== this.value) {
           this.$emit('input', v);
         }
       },
