@@ -26,7 +26,7 @@
             :name="`items-per-page`"
             dense
             hide-details
-            @input="$emit('update:itemsPerPage', $event)"
+            @input="$emit('update:items-per-page', $event)"
           />
         </template>
       </i18n>
