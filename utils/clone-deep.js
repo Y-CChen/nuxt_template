@@ -3,7 +3,7 @@ export function cloneDeep(value) {
     return value;
   }
   if (Array.isArray(value)) {
-    return value.map(cloneDeep);
+    return value.map((item) => cloneDeep(item));
   }
   const result = {};
   for (const key in value) {
