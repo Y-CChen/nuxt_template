@@ -2,7 +2,7 @@
   <v-data-table
     v-model="computedValue"
     :items="items"
-    :headers="headers"
+    :headers="computedHeaders"
     :checkbox-color="checkboxColor"
     :disable-filtering="disableFiltering"
     :disable-pagination="disablePagination"
@@ -13,6 +13,7 @@
     :item-class="itemClass"
     :item-key="itemKey"
     :loading="loading"
+    :options.sync="computedOptions"
     :show-select="showSelect"
     @click:row="$emit('click:row', ...arguments)"
   >
@@ -50,7 +51,7 @@
       </v-checkbox>
     </template>
     <template
-      v-for="headerTemplateName in headers
+      v-for="headerTemplateName in computedHeaders
         .map((header) => `header.${header.value}`)
         .filter((name) => haveSlot(name))"
       #[headerTemplateName]
@@ -58,7 +59,7 @@
       <slot :name="headerTemplateName" />
     </template>
     <template
-      v-for="itemTemplateName in headers
+      v-for="itemTemplateName in computedHeaders
         .map((header) => `item.${header.value}`)
         .filter((name) => haveSlot(name))"
       #[itemTemplateName]="{ item }"
@@ -103,7 +104,7 @@ export default {
     },
     disableSort: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     fixedHeader: {
       type: Boolean,
@@ -133,6 +134,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    options: {
+      type: Object,
+      default: () => ({}),
+    },
     selectAllLabel: {
       type: String,
       default: undefined,
@@ -149,6 +154,20 @@ export default {
       },
       set(value) {
         this.$emit('input', value);
+      },
+    },
+    computedHeaders() {
+      return this.headers.map((header) => {
+        header.sortable = !!header.sortable;
+        return header;
+      });
+    },
+    computedOptions: {
+      get() {
+        return this.options;
+      },
+      set(value) {
+        this.$emit('update:options', value);
       },
     },
   },
