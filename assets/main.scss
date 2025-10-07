@@ -53,6 +53,14 @@
   width: 100%;
 }
 
+// fixed height
+
+@mixin fixed-height($height) {
+  height: $height;
+  min-height: $height;
+  max-height: $height;
+}
+
 // fixed width
 
 @mixin fixed-width($width) {
