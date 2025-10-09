@@ -84,7 +84,7 @@ export default {
       };
     },
     computedShowArrows() {
-      return !!(this.showArrows ?? this.$vuetify.breakpoint.mdAndUp);
+      return !!(this.showArrows ?? !this.$vuetify.breakpoint.mobile);
     },
     computedShowScrollbar() {
       return !!(this.showScrollbar ?? this.scrollbarRatio < 1);
