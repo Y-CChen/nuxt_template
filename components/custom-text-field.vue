@@ -46,13 +46,14 @@
       </template>
       <template #append>
         <slot name="append">
-          <span v-if="append" class="pt-1 pb-2 pr-2">{{ append }}</span>
-          <custom-max-length-indicator
-            v-if="maxLength"
-            class="pt-1 pb-2"
-            :value="value"
-            :max-length="maxLength"
-          />
+          <div class="pt-1 pb-2 d-inline-flex gap-2">
+            <span v-if="append">{{ append }}</span>
+            <custom-max-length-indicator
+              v-if="maxLength"
+              :value="value"
+              :max-length="maxLength"
+            />
+          </div>
         </slot>
       </template>
       <template v-if="haveSlot('append-outer')" #append-outer>
