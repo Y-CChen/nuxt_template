@@ -46,6 +46,7 @@
       </template>
       <template #append>
         <slot name="append">
+          <span v-if="append" class="pt-1 pb-2 pr-2">{{ append }}</span>
           <custom-max-length-indicator
             v-if="maxLength"
             class="pt-1 pb-2"
@@ -104,6 +105,10 @@ export default {
     },
     textFieldClass: {
       type: [Object, String],
+      default: undefined,
+    },
+    append: {
+      type: String,
       default: undefined,
     },
     backgroundColor: {
