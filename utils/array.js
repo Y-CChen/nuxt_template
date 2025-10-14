@@ -18,7 +18,7 @@ export function chunk(array, { chunkSize = 1, horizontal = false } = {}) {
   return result;
 }
 
-export function fillEmpty(array, { desiredSize = 1, emptyValue = null } = {}) {
+export function fillEmpty(array, { desiredSize = 1, emptyValue } = {}) {
   const emptySize = desiredSize - array?.length;
   if (!Array.isArray(array) || !(emptySize > 0)) {
     return array;
