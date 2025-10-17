@@ -23,6 +23,7 @@
         :key="itemIndex"
         v-model="computedValue"
         class="mr-4 mt-0 pt-0"
+        :color="color"
         :disabled="item.disabled"
         hide-details
         :label="item[itemLabel]"
@@ -70,6 +71,10 @@ export default {
       default: undefined,
     },
     labelClass: {
+      type: String,
+      default: undefined,
+    },
+    color: {
       type: String,
       default: undefined,
     },
