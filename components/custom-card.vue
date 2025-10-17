@@ -10,6 +10,7 @@
     :min-height="minHeight"
     :min-width="minWidth"
     :outlined="outlined"
+    :rounded="rounded"
     :tile="tile"
     :width="width"
     v-on="on"
@@ -60,6 +61,10 @@ export default {
     outlined: {
       type: Boolean,
       default: false,
+    },
+    rounded: {
+      type: [Boolean, String],
+      default: undefined,
     },
     tile: {
       type: Boolean,
