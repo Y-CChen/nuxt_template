@@ -12,7 +12,7 @@
     :label-class="labelClass"
   >
     <div
-      class="d-flex"
+      class="d-flex gap-4"
       :class="{
         'flex-wrap': row,
         'flex-column': !row,
@@ -22,7 +22,7 @@
         v-for="(item, itemIndex) in items"
         :key="itemIndex"
         v-model="computedValue"
-        class="mr-4 mt-0 pt-0"
+        class="mt-0 pt-0"
         :color="color"
         :disabled="item.disabled"
         hide-details
