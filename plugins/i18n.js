@@ -6,10 +6,17 @@ import Vue from 'vue';
 dayjs.extend(localizedFormat);
 
 export default function ({ app }) {
+  const defaultDateFormat = 'YYYY-MM-DD';
+  const defaultTimeFormat = 'HH:mm:ss';
   const observableDayjs = Vue.observable({
-    defaultDateFormat: 'YYYY-MM-DD',
-    defaultTimeFormat: 'HH:mm:ss',
-    format(date, format) {
+    defaultMonthFormat: 'YYYY-MM',
+    defaultDateFormat,
+    defaultTimeFormat,
+    defaultDateTimeFormat: `${defaultDateFormat} ${defaultTimeFormat}`,
+    create(date) {
+      return dayjs(date);
+    },
+    format(date, format = this.defaultDateTimeFormat) {
       return dayjs(date).format(format);
     },
     toISOString(date) {
