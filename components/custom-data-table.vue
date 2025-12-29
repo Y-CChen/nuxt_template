@@ -62,9 +62,9 @@
       v-for="itemTemplateName in computedHeaders
         .map((header) => `item.${header.value}`)
         .filter((name) => haveSlot(name))"
-      #[itemTemplateName]="{ item }"
+      #[itemTemplateName]="props"
     >
-      <slot :name="itemTemplateName" v-bind="{ item }" />
+      <slot :name="itemTemplateName" v-bind="props" />
     </template>
     <template v-if="haveSlot('footer')" #footer>
       <slot name="footer" />
