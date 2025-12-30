@@ -13,6 +13,7 @@
     :item-class="itemClass"
     :item-key="itemKey"
     :loading="loading"
+    :mobile-breakpoint="$vuetify.breakpoint.mobileBreakpoint"
     :options.sync="computedOptions"
     :show-select="showSelect"
     @click:row="$emit('click:row', ...arguments)"
