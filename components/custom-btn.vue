@@ -31,9 +31,7 @@
     :width="width"
     :x-large="xLarge"
     :x-small="xSmall"
-    @click="$emit('click', $event)"
-    @mouseenter="$emit('mouseenter', $event)"
-    @mouseleave="$emit('mouseleave', $event)"
+    v-on="on"
   >
     <slot name="default" />
   </v-btn>
@@ -165,6 +163,19 @@ export default {
         return this.color;
       }
       return 'primary';
+    },
+    on() {
+      const on = {};
+      ['click', 'mousedown', 'mouseenter', 'mouseleave', 'mouseup'].forEach(
+        (event) => {
+          if (this.$listeners[event]) {
+            on[event] = (e) => {
+              this.$emit(event, e);
+            };
+          }
+        },
+      );
+      return on;
     },
   },
 };
