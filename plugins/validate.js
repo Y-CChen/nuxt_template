@@ -17,7 +17,9 @@ setInteractionMode('aggressive', () => ({ on: ['input'], debounce: 200 }));
 const Rules = {
   confirmed: 'confirmed',
   email: 'email',
+  gte: 'gte',
   integer: 'integer',
+  lte: 'lte',
   maxTextLength: 'max_text_length',
   maxValue: 'max_value',
   minTextLength: 'min_text_length',
@@ -46,10 +48,36 @@ export default function ({ app }, inject) {
     },
   });
 
+  extend(Rules.gte, {
+    params: ['min'],
+    validate(value, params) {
+      return value >= params.min;
+    },
+    message: (fieldName, params) => {
+      return app.i18n.t('value-must-min', {
+        something: params._field_,
+        min: params.min,
+      });
+    },
+  });
+
   extend(Rules.integer, {
     ...integer,
     message: (fieldName, params) => {
       return app.i18n.t('please-enter-integer');
+    },
+  });
+
+  extend(Rules.lte, {
+    params: ['max'],
+    validate(value, params) {
+      return value <= params.max;
+    },
+    message: (fieldName, params) => {
+      return app.i18n.t('value-must-max', {
+        something: params._field_,
+        max: params.max,
+      });
     },
   });
 
