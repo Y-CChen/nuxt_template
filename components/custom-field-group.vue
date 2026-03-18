@@ -53,5 +53,10 @@ export default {
       default: undefined,
     },
   },
+  computed: {
+    observer() {
+      return this.$refs.observer;
+    },
+  },
 };
 </script>
