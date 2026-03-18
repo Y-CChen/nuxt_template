@@ -14,7 +14,9 @@
       class="ma-0 pa-0"
       :class="radioGroupClass"
       :error-messages="errors"
-      :hide-details="hideDetails && !errors?.length && !hint?.length"
+      :hide-details="
+        forceHideDetails || (hideDetails && !errors?.length && !hint?.length)
+      "
       :messages="hint"
       :row="row"
     >
@@ -85,6 +87,10 @@ export default {
     color: {
       type: String,
       default: undefined,
+    },
+    forceHideDetails: {
+      type: Boolean,
+      default: false,
     },
     hideDetails: {
       type: Boolean,

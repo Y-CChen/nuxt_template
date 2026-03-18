@@ -19,7 +19,9 @@
       :disabled="disabled"
       :error-messages="errors"
       flat
-      :hide-details="hideDetails && !errors?.length && !hint?.length"
+      :hide-details="
+        forceHideDetails || (hideDetails && !errors?.length && !hint?.length)
+      "
       :item-color="itemColor"
       :item-text="itemText"
       :item-value="itemValue"
@@ -133,6 +135,10 @@ export default {
       default: undefined,
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    forceHideDetails: {
       type: Boolean,
       default: false,
     },

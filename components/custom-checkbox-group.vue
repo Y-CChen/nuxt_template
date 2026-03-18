@@ -31,7 +31,9 @@
       />
     </div>
     <custom-field-message
-      v-if="!hideDetails || errors?.length || hint?.length"
+      v-if="
+        !forceHideDetails && (!hideDetails || errors?.length || hint?.length)
+      "
       class="mb-2 px-3"
       :invalid="invalid"
       :message="errors?.[0] || (Array.isArray(hint) ? hint?.[0] : hint)"
@@ -81,6 +83,10 @@ export default {
     hint: {
       type: [Array, String],
       default: undefined,
+    },
+    forceHideDetails: {
+      type: Boolean,
+      default: false,
     },
     hideDetails: {
       type: Boolean,

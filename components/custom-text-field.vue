@@ -20,7 +20,9 @@
       :disabled="disabled"
       :error-messages="errors"
       flat
-      :hide-details="hideDetails && !errors?.length && !hint?.length"
+      :hide-details="
+        forceHideDetails || (hideDetails && !errors?.length && !hint?.length)
+      "
       :maxlength="maxLength"
       :messages="hint"
       :outlined="!readonly && outlined"
@@ -121,6 +123,10 @@ export default {
       default: false,
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    forceHideDetails: {
       type: Boolean,
       default: false,
     },
