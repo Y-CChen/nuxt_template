@@ -58,5 +58,16 @@ export default {
       return this.$refs.observer;
     },
   },
+  methods: {
+    async validateWithErrors() {
+      const { errors: errorMappings } = await this.observer.validateWithInfo();
+      return Object.values({ ...errorMappings }).reduce((acc, errors) => {
+        if (errors?.length > 0) {
+          return [...acc, ...errors];
+        }
+        return acc;
+      }, []);
+    },
+  },
 };
 </script>
