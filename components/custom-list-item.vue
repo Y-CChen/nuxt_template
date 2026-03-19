@@ -7,10 +7,7 @@
     :tag="tag"
     :to="to"
     :value="value"
-    @click="$emit('click', $event)"
-    @input="$emit('input', $event)"
-    @mouseenter="$emit('mouseenter', $event)"
-    @mouseleave="$emit('mouseleave', $event)"
+    v-on="on"
   >
     <slot name="default" />
   </v-list-item>
@@ -46,6 +43,19 @@ export default {
     value: {
       type: null,
       default: undefined,
+    },
+  },
+  computed: {
+    on() {
+      const on = {};
+      ['click', 'input', 'mouseenter', 'mouseleave'].forEach((event) => {
+        if (this.$listeners[event]) {
+          on[event] = (e) => {
+            this.$emit(event, e);
+          };
+        }
+      });
+      return on;
     },
   },
 };
