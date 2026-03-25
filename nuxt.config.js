@@ -73,6 +73,7 @@ export default {
     { src: '~/plugins/i18n.js' },
     { src: '~/plugins/validate.js' },
     { src: '~/plugins/ui.client.js', mode: 'client' },
+    { src: '~/plugins/axios.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
