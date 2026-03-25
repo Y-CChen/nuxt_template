@@ -17,10 +17,18 @@ export default function ({ app }) {
       return dayjs(date);
     },
     format(date, format = this.defaultDateTimeFormat) {
-      return dayjs(date).format(format);
+      const dateDayjs = this.create(date);
+      if (!dateDayjs.isValid()) {
+        return '';
+      }
+      return dateDayjs.format(format);
     },
     toISOString(date) {
-      return dayjs(date).toISOString();
+      const dateDayjs = this.create(date);
+      if (!dateDayjs.isValid()) {
+        return '';
+      }
+      return dateDayjs.toISOString();
     },
     localeChanged() {
       this.format = this.format.bind(this);
