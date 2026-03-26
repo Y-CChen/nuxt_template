@@ -22,7 +22,7 @@
         v-for="(item, itemIndex) in items"
         :key="itemIndex"
         v-model="computedValue"
-        class="mt-0 pt-0"
+        class="custom-checkbox"
         :color="color"
         :disabled="item.disabled"
         hide-details

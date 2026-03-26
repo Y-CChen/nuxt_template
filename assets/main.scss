@@ -6,6 +6,17 @@
   cursor: pointer;
 }
 
+// custom-checkbox
+
+.custom-checkbox {
+  margin-top: 0;
+  padding-top: 0;
+
+  .v-label {
+    line-height: 100%;
+  }
+}
+
 // custom-editor
 
 @mixin heading($heading) {
